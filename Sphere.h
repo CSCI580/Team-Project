@@ -8,6 +8,7 @@
 #include "Hittable.h"
 #include "Vec3.h"
 
+// 16:51
 class Sphere : public Hittable {
 public:
     Sphere() {}
