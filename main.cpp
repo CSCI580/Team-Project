@@ -75,7 +75,7 @@ Color ray_color(const Ray& r, const Hittable& world, int depth) {
 }
 
 int main() {
-    //test
+    //19:46
     // Image
     const double aspect_ratio = 16.0 / 9.0;
     const int image_width = 256;
