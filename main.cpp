@@ -87,7 +87,7 @@ int main() {
     HittableList world = random_scene();
 
     //Camera
-    Point3 lookfrom(13,2,3);
+    Point3 lookfrom(12,2,3);
     Point3 lookat(0,0,0);
     Vec3 vup(0,1,0);
     auto dist_to_focus = 10.0;
