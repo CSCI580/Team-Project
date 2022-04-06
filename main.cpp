@@ -11,7 +11,7 @@
 
 HittableList random_scene() {
     HittableList world;
-    // pd
+    //1824
     auto ground_material = std::make_shared<lambertian>(Color(0.5, 0.5, 0.5));
     world.add(std::make_shared<Sphere>(Point3(0,-1000,0), 1000, ground_material));
 
