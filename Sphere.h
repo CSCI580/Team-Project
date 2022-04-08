@@ -17,7 +17,9 @@ public:
 
     virtual bool hit(
             const Ray& r, double t_min, double t_max, hit_record& rec) const override;
-
+    virtual bool bounding_box(float t0, float t1, AABB& box) const {
+        box =  AABB(Vec3(0,0,0), Vec3(0,0,0));
+        return true; }
 public:
     std::shared_ptr<Material> mat_ptr;
     Point3 center;

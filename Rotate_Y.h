@@ -4,7 +4,7 @@
 class rotate_y : public Hittable {
 public:
     rotate_y(Hittable *p, float angle);
-    virtual bool hit(const Ray& r, float t_min, float t_max, hit_record& rec) const;
+    virtual bool hit(const Ray& r, double t_min, double t_max, hit_record& rec) const;
     virtual bool bounding_box(float t0, float t1, AABB& box) const {
         box = bbox; return hasbox;}
         Hittable *ptr;
@@ -43,7 +43,7 @@ rotate_y::rotate_y(Hittable *p, float angle) : ptr(p) {
     bbox = AABB(min, max);
 }
 
-bool rotate_y::hit(const Ray& r, float t_min, float t_max, hit_record& rec) const {
+bool rotate_y::hit(const Ray& r, double t_min, double t_max, hit_record& rec) const {
     Vec3 origin = r.origin();
     Vec3 direction = r.direction();
     origin[0] = cos_theta*r.origin()[0] - sin_theta*r.origin()[2];

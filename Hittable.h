@@ -6,6 +6,7 @@
 #define PROJECT_HITTABLE_H
 
 #include "util.h"
+#include "AABB.h"
 
 class Material;
 
@@ -14,6 +15,8 @@ struct hit_record {
     Vec3 normal;
     double t;
     std::shared_ptr<Material> mat_ptr;
+    float u = 1;
+    float v = 1;
 
     bool front_face;
     inline void set_face_normal(const Ray& r, const Vec3& outward_normal) {
@@ -25,6 +28,8 @@ struct hit_record {
 class Hittable {
 public:
     virtual bool hit(const Ray& r, double t_min, double t_max, hit_record& rec) const = 0;
+    virtual bool bounding_box(float t0, float t1, AABB& box) const = 0;
+
 };
 
 

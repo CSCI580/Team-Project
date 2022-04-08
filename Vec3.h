@@ -11,7 +11,6 @@
 
 #define Point3 Vec3
 #define Color Vec3
-
 class Vec3 {
 public:
     Vec3() {

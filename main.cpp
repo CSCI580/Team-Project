@@ -4,6 +4,9 @@
 #include "HittableList.h"
 #include "Sphere.h"
 #include "Camera.h"
+#include "Box.h"
+#include "Translate.h"
+#include "Rotate_Y.h"
 
 #include <memory>
 #include <iostream>
@@ -11,9 +14,20 @@
 
 HittableList random_scene() {
     HittableList world;
+    auto albedo = Color::random() * Color::random();
+    std::shared_ptr<Material> WHITE = std::make_shared<lambertian>(albedo);
+    auto material1 = std::make_shared<dielectric>(1.0);
+    auto material3 = std::make_shared<metal>(Color(0.7, 0.6, 0.5), 0.0);
+
     //1824
     auto ground_material = std::make_shared<lambertian>(Color(0.5, 0.5, 0.5));
     world.add(std::make_shared<Sphere>(Point3(0,-1000,0), 1000, ground_material));
+/*    Hittable *box1 = new Box(Vec3(0, 0, 0), Vec3(165, 165, 165),WHITE);
+    Hittable *box2 = new Box(Vec3(0, 0, 0), Vec3(165, 330, 165),WHITE);
+    world.add(std::make_shared<translate>(new rotate_y(box1, -18), Vec3(130, 0, 65)));*/
+    world.add(std::make_shared<Box>(Vec3(0, 0, 0), Vec3(1, 1, 1),material1));
+//    world.add(std::make_shared<Box>(Vec3(1, 1, 1), Vec3(2, 2, 2),material3));
+
 
     for (int a = -11; a < 11; a++) {
         for (int b = -11; b < 11; b++) {
@@ -42,6 +56,7 @@ HittableList random_scene() {
             }
         }
     }
+/*
 
     auto material1 = std::make_shared<dielectric>(1.5);
     world.add(std::make_shared<Sphere>(Point3(0, 1, 0), 1.0, material1));
@@ -51,6 +66,7 @@ HittableList random_scene() {
 
     auto material3 = std::make_shared<metal>(Color(0.7, 0.6, 0.5), 0.0);
     world.add(std::make_shared<Sphere>(Point3(4, 1, 0), 1.0, material3));
+*/
 
     return world;
 }
@@ -80,7 +96,7 @@ int main() {
     const double aspect_ratio = 16.0 / 9.0;
     const int image_width = 256;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
-    const int samples_per_pixel = 10;
+    const int samples_per_pixel = 100;
     const int max_depth = 50;
 
     // World
