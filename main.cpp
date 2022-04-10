@@ -8,6 +8,95 @@
 #include <memory>
 #include <iostream>
 #include <fstream>
+#include <random>
+
+bool valid_bubble(Vec3 bubble_offset, double bubble_size) {
+    if (bubble_size < 0 || bubble_size > 1) {
+        return false;
+    }
+    for (int i = 0; i < 3; ++i) {
+        if (bubble_offset[i] < -1 + bubble_size || bubble_offset[i] > 1 - bubble_size) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void generate_bubble(HittableList* world, Vec3 center) {
+    const int BUBBLE_NUM = 300;
+    std::default_random_engine generator;
+    std::normal_distribution<double> pos_dist(0, 0.2);
+    std::normal_distribution<double> size_dist(0.02,0.003);
+
+    auto bubble_material = std::make_shared<dielectric>(1/1.31);
+    for (int i = 0; i < BUBBLE_NUM; ++i) {
+        Vec3 bubble_offset;
+        double bubble_size;
+        do {
+            bubble_offset = Vec3(pos_dist(generator), pos_dist(generator), pos_dist(generator));
+            bubble_size = size_dist(generator);
+        } while (!valid_bubble(bubble_offset, bubble_size));
+        std::cout << bubble_offset+center << "   " << bubble_size << "\n";
+        world->add(std::make_shared<Sphere>(bubble_offset+center, bubble_size, bubble_material));
+    }
+}
+
+HittableList dielectric_scene() {
+    HittableList world;
+
+    auto ground_material = std::make_shared<lambertian>(Color(0.5, 0.5, 0.5));
+    world.add(std::make_shared<Sphere>(Point3(0,-1000,0), 1000, ground_material));
+
+    for (int a = -11; a < 11; a++) {
+        for (int b = -11; b < 11; b++) {
+            double choose_mat = random_double();
+            Point3 center(a + 0.9*random_double(), 0.2, b + 0.9*random_double());
+
+            if ((center - Point3(4, 0.2, 0)).length() > 0.9) {
+                std::shared_ptr<Material> sphere_material;
+
+                if (choose_mat < 0.8) {
+                    // diffuse
+                    auto albedo = Color::random() * Color::random();
+                    sphere_material = std::make_shared<lambertian>(albedo);
+                    world.add(std::make_shared<Sphere>(center, 0.2, sphere_material));
+                } else if (choose_mat < 0.95) {
+                    // metal
+                    auto albedo = Color::random(0.5, 1);
+                    auto fuzz = random_double(0, 0.5);
+                    sphere_material = std::make_shared<metal>(albedo, fuzz);
+                    world.add(std::make_shared<Sphere>(center, 0.2, sphere_material));
+                } else {
+                    // metal
+                    auto albedo = Color::random(0.5, 1);
+                    auto fuzz = random_double(0, 0.5);
+                    sphere_material = std::make_shared<metal>(albedo, fuzz);
+                    world.add(std::make_shared<Sphere>(center, 0.2, sphere_material));
+                    // glass
+//                    sphere_material = std::make_shared<dielectric>(1.5);
+//                    world.add(std::make_shared<Sphere>(center, 0.2, sphere_material));
+                }
+            }
+        }
+    }
+//    auto material0 = std::make_shared<dielectric>(1);
+//    world.add(std::make_shared<Sphere>(Point3(0, 1, 0), 1.01, material0));
+
+    auto material1 = std::make_shared<dielectric>(1.31);
+    world.add(std::make_shared<Sphere>(Point3(0, 1, 0), 1.0, material1));
+
+//    auto bubble_material = std::make_shared<dielectric>(1/1.31);
+//    world.add(std::make_shared<Sphere>(Point3(0.205287, 1-0.326045, -0.0365897), 0.5, bubble_material));
+
+
+    generate_bubble(&world, Vec3(0, 1, 0));
+
+//
+//    auto material3 = std::make_shared<metal>(Color(0.7, 0.6, 0.5), 0.0);
+//    world.add(std::make_shared<Sphere>(Point3(4, 1, 0), 1.0, material3));
+
+    return world;
+}
 
 HittableList random_scene() {
     HittableList world;
@@ -43,7 +132,7 @@ HittableList random_scene() {
         }
     }
 
-    auto material1 = std::make_shared<dielectric>(1.5);
+    auto material1 = std::make_shared<dielectric>(1.31);
     world.add(std::make_shared<Sphere>(Point3(0, 1, 0), 1.0, material1));
 
     auto material2 = std::make_shared<lambertian>(Color(0.4, 0.2, 0.1));
@@ -78,13 +167,13 @@ int main() {
     //19:50
     // Image
     const double aspect_ratio = 16.0 / 9.0;
-    const int image_width = 256;
+    const int image_width = 512;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
-    const int samples_per_pixel = 10;
+    const int samples_per_pixel = 30;
     const int max_depth = 50;
 
     // World
-    HittableList world = random_scene();
+    HittableList world = dielectric_scene();
 
     //Camera
     Point3 lookfrom(13,2,3);
