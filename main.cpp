@@ -20,6 +20,8 @@ HittableList cornell_box() {
     auto red = std::make_shared<lambertian>(Vec3(0.65, 0.05, 0.05));
     auto white = std::make_shared<lambertian>(Vec3(0.73, 0.73, 0.73));
     auto green = std::make_shared<lambertian>(Vec3(0.12, 0.45, 0.15));
+    auto clear_mat = std::make_shared<dielectric>(1.4);
+
     world.add(std::make_shared<flip_normals>(new yz_rect(0, 555, 0, 555, 555, green)));
     world.add(std::make_shared<yz_rect>(0, 555, 0, 555, 0, red));
     world.add(std::make_shared<xz_rect>(213, 343, 227, 332, 554, white));
@@ -31,7 +33,7 @@ HittableList cornell_box() {
     box1 = std::make_shared<rotate_y>(box1, 15);
     box1 = std::make_shared<translate>(box1, Vec3(265,0,295));
     // small box
-    std::shared_ptr<Hittable> box2 = std::make_shared<Box>(Vec3(0,0,0), Vec3(165,165,165), white);
+    std::shared_ptr<Hittable> box2 = std::make_shared<Box>(Vec3(0,0,0), Vec3(165,165,165), clear_mat);
     box2 = std::make_shared<rotate_y>(box2, -18);
     box2 = std::make_shared<translate>(box2, Vec3(130,0,65));
 
