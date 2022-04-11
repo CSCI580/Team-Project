@@ -45,8 +45,11 @@ public:
     virtual bool bounding_box(float t0, float t1, AABB& output_box) const;
 
     BVH_Node(const HittableList& list, double time0, double time1)
-            : BVH_Node(list.objects, 0, list.objects.size(), time0, time1)
-    {}
+            //: BVH_Node(list.objects, 0, list.objects.size(), time0, time1)
+    {
+        BVH_Node(list.objects, 0, list.objects.size(), time0, time1);
+    }
+
     BVH_Node(
             const std::vector<std::shared_ptr<Hittable> >& src_objects,
     size_t start, size_t end, double time0, double time1) {
