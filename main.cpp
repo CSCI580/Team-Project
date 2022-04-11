@@ -7,27 +7,57 @@
 #include "Box.h"
 #include "Translate.h"
 #include "Rotate_Y.h"
+#include "BVH_Node.h"
 
 #include <memory>
 #include <iostream>
 #include <fstream>
 
+HittableList cornell_box() {
+    HittableList world;
+    auto red = std::make_shared<lambertian>(Vec3(0.65, 0.05, 0.05));
+    auto white = std::make_shared<lambertian>(Vec3(0.73, 0.73, 0.73));
+    auto green = std::make_shared<lambertian>(Vec3(0.12, 0.45, 0.15));
+    world.add(std::make_shared<flip_normals>(new yz_rect(0, 555, 0, 555, 555, green)));
+    world.add(std::make_shared<yz_rect>(0, 555, 0, 555, 0, red));
+    world.add(std::make_shared<xz_rect>(213, 343, 227, 332, 554, white));
+    world.add(std::make_shared<flip_normals>(new xz_rect(0, 555, 0, 555, 555, white)));
+    world.add(std::make_shared<xz_rect>(0, 555, 0, 555, 0, white));
+    world.add(std::make_shared<flip_normals>(new xy_rect(0, 555, 0, 555, 555, white)));
+    // long box
+    std::shared_ptr<Hittable> box1 = std::make_shared<Box>(Vec3(0, 0, 0), Vec3(165, 330, 165), white);
+    box1 = std::make_shared<rotate_y>(box1, 15);
+    box1 = std::make_shared<translate>(box1, Vec3(265,0,295));
+    // small box
+    std::shared_ptr<Hittable> box2 = std::make_shared<Box>(Vec3(0,0,0), Vec3(165,165,165), white);
+    box2 = std::make_shared<rotate_y>(box2, -18);
+    box2 = std::make_shared<translate>(box2, Vec3(130,0,65));
+
+    world.add(box1);
+    world.add(box2);
+
+    return world;
+}
 HittableList random_scene() {
     HittableList world;
-    auto albedo = Color::random() * Color::random();
-    std::shared_ptr<Material> WHITE = std::make_shared<lambertian>(albedo);
-    auto material1 = std::make_shared<dielectric>(1.0);
-    auto material3 = std::make_shared<metal>(Color(0.7, 0.6, 0.5), 0.0);
-
-    //1824
+    auto white_mat = std::make_shared<lambertian>(Vec3(.73, .73, .73));
+    auto clear_mat = std::make_shared<dielectric>(1.4);
+    auto metal_mat = std::make_shared<metal>(Color(0.7, 0.6, 0.5), 0.0);
     auto ground_material = std::make_shared<lambertian>(Color(0.5, 0.5, 0.5));
-    world.add(std::make_shared<Sphere>(Point3(0,-1000,0), 1000, ground_material));
-/*    Hittable *box1 = new Box(Vec3(0, 0, 0), Vec3(165, 165, 165),WHITE);
-    Hittable *box2 = new Box(Vec3(0, 0, 0), Vec3(165, 330, 165),WHITE);
-    world.add(std::make_shared<translate>(new rotate_y(box1, -18), Vec3(130, 0, 65)));*/
-    world.add(std::make_shared<Box>(Vec3(0, 0, 0), Vec3(1, 1, 1),material1));
-//    world.add(std::make_shared<Box>(Vec3(1, 1, 1), Vec3(2, 2, 2),material3));
+    HittableList boxes1;
+    // long box
+    std::shared_ptr<Hittable> box1 = std::make_shared<Box>(Vec3(0, 0, 0), Vec3(1, 2, 1), white_mat);
+    box1 = std::make_shared<rotate_y>(box1, 15);
+    box1 = std::make_shared<translate>(box1, Vec3(-4, 0, 0));
+    // small box
+    std::shared_ptr<Hittable> box2 = std::make_shared<Box>(Vec3(0,0,0), Vec3(1,1,1), clear_mat);
+//    box2 = std::make_shared<rotate_y>(box2, 0);
+    box2 = std::make_shared<translate>(box2, Vec3(0, 0, 0));
 
+    world.add(box1);
+    world.add(box2);
+
+    world.add(std::make_shared<Sphere>(Point3(0,-1000,0), 1000, ground_material));
 
     for (int a = -11; a < 11; a++) {
         for (int b = -11; b < 11; b++) {
@@ -56,9 +86,8 @@ HittableList random_scene() {
             }
         }
     }
-/*
 
-    auto material1 = std::make_shared<dielectric>(1.5);
+ /*   auto material1 = std::make_shared<dielectric>(1.5);
     world.add(std::make_shared<Sphere>(Point3(0, 1, 0), 1.0, material1));
 
     auto material2 = std::make_shared<lambertian>(Color(0.4, 0.2, 0.1));
@@ -67,7 +96,6 @@ HittableList random_scene() {
     auto material3 = std::make_shared<metal>(Color(0.7, 0.6, 0.5), 0.0);
     world.add(std::make_shared<Sphere>(Point3(4, 1, 0), 1.0, material3));
 */
-
     return world;
 }
 
@@ -93,23 +121,50 @@ Color ray_color(const Ray& r, const Hittable& world, int depth) {
 int main() {
     //19:50
     // Image
-    const double aspect_ratio = 16.0 / 9.0;
+    int nx = 800;
+    int ny = 800;
+    int ns = 100;
+    const double aspect_ratio = float(nx)/float(ny);
+
+    const int image_width = 800;
+    const int image_height = static_cast<int>(image_width / aspect_ratio);
+    const int samples_per_pixel = 100;
+    const int max_depth = 50;
+/*
+    const double aspect_ratio = 16.0 /9.0;
     const int image_width = 256;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
     const int samples_per_pixel = 100;
     const int max_depth = 50;
-
     // World
     HittableList world = random_scene();
-
     //Camera
-    Point3 lookfrom(13,2,3);
-    Point3 lookat(0,0,0);
     Vec3 vup(0,1,0);
     auto dist_to_focus = 10.0;
+    Color background(0,0,0);
+    Point3 lookfrom = Point3(12, 2, 1);
+    Point3 lookat = Point3(0, 0, 0);
     auto aperture = 0.1;
+    double vfov = 20.0;
+*/
 
-    Camera cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
+    HittableList world = cornell_box();
+    //hitable *world = cornell_balls();
+    //hitable *world = cornell_smoke();
+    //hitable *world = cornell_final();
+    //hitable *world = final();
+
+    Vec3 lookfrom(278, 278, -800);
+    //vec3 lookfrom(478, 278, -600);
+    Vec3 lookat(278,278,0);
+    //vec3 lookfrom(0, 0, 6);
+    //vec3 lookat(0,0,0);
+    float dist_to_focus = 10.0;
+    float aperture = 0.0;
+    float vfov = 40.0;
+
+    Vec3 vup(0,1,0);
+    Camera cam(lookfrom, lookat, vup, vfov, aspect_ratio, aperture, dist_to_focus);
     // Render
     std::ofstream output;
     output.open("output.ppm");

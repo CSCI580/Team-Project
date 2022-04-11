@@ -142,13 +142,15 @@ inline Vec3 random_in_unit_sphere() {
     }
 }
 
+
 Vec3 random_in_unit_disk() {
-    while (true) {
-        auto p = Vec3(random_double(-1,1), random_double(-1,1), 0);
-        if (p.length_squared() >= 1) continue;
-        return p;
-    }
+    Vec3 p;
+    do {
+        p = Vec3(random_double(-1,1),random_double(-1,1),0) - Vec3(1,1,0);
+    } while (dot(p,p) >= 1.0);
+    return p;
 }
+
 
 Vec3 reflect(const Vec3& v, const Vec3& n) {
     return v - 2*dot(v,n)*n;

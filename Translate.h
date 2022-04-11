@@ -4,30 +4,37 @@
 
 class translate : public Hittable {
 public:
-    translate(Hittable *p, const Vec3& displacement)
+    translate(std::shared_ptr<Hittable> p, const Vec3& displacement)
             : ptr(p), offset(displacement) {}
+
     virtual bool hit(
-            const Ray& r, double t_min, double t_max, hit_record& rec) const;
-    virtual bool bounding_box(float t0, float t1, AABB& box) const;
-    Hittable *ptr;
+            const Ray& r, double t_min, double t_max, hit_record& rec) const override;
+
+    virtual bool bounding_box(float time0, float time1, AABB& output_box) const override;
+
+public:
+    std::shared_ptr<Hittable> ptr;
     Vec3 offset;
 };
 
 bool translate::hit(const Ray& r, double t_min, double t_max, hit_record& rec) const {
-    Ray moved_r(r.origin() - offset, r.direction());
-    if (ptr->hit(moved_r, t_min, t_max, rec)) {
-        rec.p += offset;
-        return true;
-    }
-    else
+    Ray moved_r(r.origin() - offset, r.direction(), r.time());
+    if (!ptr->hit(moved_r, t_min, t_max, rec))
         return false;
+
+    rec.p += offset;
+    rec.set_face_normal(moved_r, rec.normal);
+
+    return true;
 }
 
-bool translate::bounding_box(float t0, float t1, AABB& box) const {
-    if (ptr->bounding_box(t0, t1, box)) {
-        box = AABB(box.min() + offset, box.max() + offset);
-        return true;
-    }
-    else
+bool translate::bounding_box(float time0, float time1, AABB& output_box) const {
+    if (!ptr->bounding_box(time0, time1, output_box))
         return false;
+
+    output_box = AABB(
+            output_box.min() + offset,
+            output_box.max() + offset);
+
+    return true;
 }

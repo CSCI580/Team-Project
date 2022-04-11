@@ -25,13 +25,13 @@ Box::Box(const Vec3& p0, const Vec3& p1, std::shared_ptr<Material> ptr) {
     pmin = p0;
     pmax = p1;
     list.add(std::make_shared<xy_rect>(p0.x(), p1.x(), p0.y(), p1.y(), p1.z(), ptr));
-    list.add(std::make_shared<flip_normals>(new xy_rect(p0.x(), p1.x(), p0.y(), p1.y(), p1.z(), ptr)));
+    list.add(std::make_shared<xy_rect>(p0.x(), p1.x(), p0.y(), p1.y(), p0.z(), ptr));
 
     list.add(std::make_shared<xz_rect>(p0.x(), p1.x(), p0.z(), p1.z(), p1.y(), ptr));
-    list.add(std::make_shared<flip_normals>(new xz_rect(p0.x(), p1.x(), p0.z(), p1.z(), p1.y(), ptr)));
+    list.add(std::make_shared<xz_rect>(p0.x(), p1.x(), p0.z(), p1.z(), p0.y(), ptr));
 
     list.add(std::make_shared<yz_rect>(p0.y(), p1.y(), p0.z(), p1.z(), p1.x(), ptr));
-    list.add(std::make_shared<flip_normals>(new yz_rect(p0.y(), p1.y(), p0.z(), p1.z(), p1.x(), ptr)));
+    list.add(std::make_shared<yz_rect>(p0.y(), p1.y(), p0.z(), p1.z(), p0.x(), ptr));
 
 }
 

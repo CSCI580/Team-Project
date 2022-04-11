@@ -17,9 +17,7 @@ public:
 
     virtual bool hit(
             const Ray& r, double t_min, double t_max, hit_record& rec) const override;
-    virtual bool bounding_box(float t0, float t1, AABB& box) const {
-        box =  AABB(Vec3(0,0,0), Vec3(0,0,0));
-        return true; }
+    virtual bool bounding_box(float t0, float t1, AABB& box) const override;
 public:
     std::shared_ptr<Material> mat_ptr;
     Point3 center;
@@ -52,5 +50,10 @@ bool Sphere::hit(const Ray& r, double t_min, double t_max, hit_record& rec) cons
 
     return true;
 }
-
+bool Sphere::bounding_box(float t0, float t1, AABB& box) const {
+    box = AABB(
+            center - Vec3(radius, radius, radius),
+            center + Vec3(radius, radius, radius));
+    return true;
+}
 #endif //PROJECT_SPHERE_H

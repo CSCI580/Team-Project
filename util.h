@@ -25,15 +25,15 @@ inline double degrees_to_radians(double degrees) {
 }
 
 inline double random_double() {
+    // Returns a random real in [0,1).
+    static std::random_device rd;
+    static std::mt19937 generator(20000905 << 2); //Mersenne Twister 19937 generator
     static std::uniform_real_distribution<double> distribution(0.0, 1.0);
-    static std::mt19937 generator;
     return distribution(generator);
 }
 
 inline double random_double(double min, double max) {
-    static std::uniform_real_distribution<double> distribution(min, max);
-    static std::mt19937 generator;
-    return distribution(generator);
+    return min + (max - min) * random_double();
 }
 
 inline double clamp(double x, double min, double max) {

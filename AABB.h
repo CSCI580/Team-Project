@@ -4,6 +4,7 @@
 inline float ffmin(float a, float b) { return a < b ? a : b; }
 inline float ffmax(float a, float b) { return a > b ? a : b; }
 
+// object volumn
 class AABB {
 public:
     Vec3 _min; //左下角顶点

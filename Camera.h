@@ -6,6 +6,8 @@
 #define PROJECT_CAMERA_H
 
 #include "util.h"
+#include "Vec3.h"
+
 
 class Camera {
 public:
@@ -40,7 +42,7 @@ public:
 
         return Ray(
                 origin + offset,
-                lower_left_corner + s*horizontal + t*vertical - origin - offset
+                lower_left_corner + s*horizontal + t*vertical - origin - offset,random_double(time0, time1)
         );
     }
 
@@ -51,6 +53,8 @@ private:
     Vec3 vertical;
     Vec3 u, v, w;
     double lens_radius;
+    double time0, time1;  // shutter open/close times
+
 };
 
 #endif //PROJECT_CAMERA_H
