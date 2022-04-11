@@ -49,16 +49,16 @@ HittableList random_scene() {
     auto metal_mat = std::make_shared<metal>(Color(0.7, 0.6, 0.5), 0.0);
     auto ground_material = std::make_shared<lambertian>(Color(0.5, 0.5, 0.5));
     HittableList boxes1;
-    // long box
-    std::shared_ptr<Hittable> box1 = std::make_shared<Box>(Vec3(0, 0, 0), Vec3(1, 2, 1), white_mat);
-    box1 = std::make_shared<rotate_y>(box1, 15);
-    box1 = std::make_shared<translate>(box1, Vec3(-4, 0, 0));
+//    // long box
+//    std::shared_ptr<Hittable> box1 = std::make_shared<Box>(Vec3(0, 0, 0), Vec3(1, 2, 1), white_mat);
+//    box1 = std::make_shared<rotate_y>(box1, 15);
+//    box1 = std::make_shared<translate>(box1, Vec3(-4, 0, 0));
     // small box
     std::shared_ptr<Hittable> box2 = std::make_shared<Box>(Vec3(0,0,0), Vec3(1,1,1), clear_mat);
 //    box2 = std::make_shared<rotate_y>(box2, 0);
     box2 = std::make_shared<translate>(box2, Vec3(0, 0, 0));
 
-    world.add(box1);
+//    world.add(box1);
     world.add(box2);
 
     world.add(std::make_shared<Sphere>(Point3(0,-1000,0), 1000, ground_material));
@@ -130,9 +130,9 @@ int main() {
     int ns = 100;
     const double aspect_ratio = float(nx)/float(ny);
 
-    const int image_width = 800;
+    const int image_width = 256;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
-    const int samples_per_pixel = 100;
+    const int samples_per_pixel = 20;
     const int max_depth = 50;
 /*
     const double aspect_ratio = 16.0 /9.0;
