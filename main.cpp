@@ -129,12 +129,10 @@ Color ray_color(const Ray& r, const Hittable& world, int depth) {
 int main() {
     //19:50
     // Image
-    int nx = 800;
-    int ny = 800;
-    int ns = 100;
-    const double aspect_ratio = float(nx)/float(ny);
 
-    const int image_width = 256;
+    const double aspect_ratio = 4.0/3.0;
+
+    const int image_width = 500;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
     const int samples_per_pixel = 20;
     const int max_depth = 50;
