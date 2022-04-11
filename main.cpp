@@ -5,6 +5,9 @@
 #include "Sphere.h"
 #include "Camera.h"
 
+#include <chrono>
+#include <omp.h>
+// #include <mpi.h>
 #include <memory>
 #include <iostream>
 #include <fstream>
@@ -95,22 +98,54 @@ int main() {
 
     Camera cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
     // Render
-    std::ofstream output;
-    output.open("output.ppm");
-    output << "P3\n" << image_width << " " << image_height << "\n255\n";
+    Color* pixelBuffer = (Color*) malloc(image_height * image_width * sizeof(Color));
+    auto start = std::chrono::high_resolution_clock::now();
+    omp_set_num_threads(16);
+#pragma omp parallel for
     for (int j = image_height-1; j >= 0; --j) {
-        std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
+        //std::cout << "\rScanned line: " << j << ' ' << std::endl;
+
         for (int i = 0; i < image_width; ++i) {
             Color pixel_color(0, 0, 0);
             for (int s = 0; s < samples_per_pixel; ++s) {
                 double u = (i + random_double()) / (image_width-1);
                 double v = (j + random_double()) / (image_height-1);
                 Ray r = cam.get_ray(u, v);
+                //#pragma omp parallel
                 pixel_color += ray_color(r, world, max_depth);
             }
-            write_color(output, pixel_color, samples_per_pixel);
+            pixelBuffer[j*image_width+i] = pixel_color;
+        }
+    }
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    std::cout << "\nRUN TIME: " <<duration.count()/1000000.0 << std::endl;
+
+
+
+
+    std::ofstream output;
+    output.open("output.ppm");
+    output << "P3\n" << image_width << " " << image_height << "\n255\n";
+    // for (int j = image_height-1; j >= 0; --j) {
+    //     std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
+    //     for (int i = 0; i < image_width; ++i) {
+    //         Color pixel_color(0, 0, 0);
+    //         for (int s = 0; s < samples_per_pixel; ++s) {
+    //             double u = (i + random_double()) / (image_width-1);
+    //             double v = (j + random_double()) / (image_height-1);
+    //             Ray r = cam.get_ray(u, v);
+    //             pixel_color += ray_color(r, world, max_depth);
+    //         }
+    //         write_color(output, pixel_color, samples_per_pixel);
+    //     }
+    // }
+    for (int j = image_height-1; j >= 0; --j) {
+        for (int i = 0; i < image_width; ++i) {
+            write_color(output, pixelBuffer[j*image_width+i], samples_per_pixel);
         }
     }
     output.close();
-    std::cerr << "\nDone.\n";
+    free(pixelBuffer);
+    // std::cerr << "\nDone.\n";
 }
