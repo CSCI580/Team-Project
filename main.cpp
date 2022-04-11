@@ -172,7 +172,7 @@ int main() {
     Vec3 vup(0,1,0);
     Camera cam(lookfrom, lookat, vup, vfov, aspect_ratio, aperture, dist_to_focus);
     // Render
-    if (MULTITHREAD){
+#if MULTITHREAD
         Color* pixelBuffer = (Color*) malloc(image_height * image_width * sizeof(Color));
         auto start = std::chrono::high_resolution_clock::now();
         omp_set_num_threads(16);
@@ -206,8 +206,8 @@ int main() {
         }
         output.close();
         free(pixelBuffer);
-    }
-    else{
+
+#else
 
         std::ofstream output;
         output.open("output.ppm");
@@ -229,6 +229,6 @@ int main() {
         output.close();
 
         std::cerr << "\nDone.\n";
-    }
+#endif
 
 }
