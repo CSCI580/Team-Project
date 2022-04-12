@@ -1,0 +1,209 @@
+<html>
+<head>
+    <title> COS426 Assignment 3 Rendering &mdash; Ray Tracer &mdash; Writeup</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body>
+<script src="js/student.js"> </script>
+<script src="coursejs/writeup.js"> </script>
+<div class="top">
+<div class="main_div">
+
+<h1> <div class=assignment>COS426 Assignment 3</div> Ray Tracer &mdash; Writeup</h1>
+<h2>Switch to: <a href='index.html'>Interactive Editor</a></h2>
+<br>
+<div id='collaboration'>
+    <div>
+    Collaboration Statement:
+    </div>
+        <br>
+    <div>
+        <em>
+            Under penalty of academic dishonesty (as outlined in RRR)
+            my digital signature below verifies that the following is true:
+            <ul>
+                <p>
+                    That all images in this writeup were generated directly by my solution code
+                    or provided by the course staff (exception: art contest submissions
+                    may pass through intermediary software like GIMP)
+                </p>
+                <p>
+                    That no other student has viewed my writeup explanations
+                    or my writeup images
+                </p>
+                <p>
+                    That my solution code is my own work; particularly that
+                    my solution was not copied from any other
+                    student's solution code, and that no other student
+                    copied their solution directly code from me
+                </p>
+                <p>
+                    That I did not discuss assignment specifics or view
+                    the solution code of any other student besides that of my (optional) partner
+                </p>
+                <p>
+                    That I have followed all other course collaboration
+                    and course plagiarism policies as written on the course website.
+                </p>
+            </ul>
+        </em>
+        <p>
+            <strong>
+                Beiqi Zou  (bzou)
+            </strong>
+        </p>
+
+        <p>
+            Collaborated with: PARTNER NAME HERE (partner-netid-here)
+        </p>
+        <br>
+    </div>
+</div>
+<div class='selectable'>
+<h2 id='student'></h2>
+
+<ul>
+<li>(1.0) <a href='#TraceRay'>Trace Ray and Calculate Color</a></li>
+<li>(2.0) <a href='#Triangle'>Triangle</a></li>
+<li>(2.0) <a href='#Sphere'>Sphere</a></li>
+<li>(2.5) <a href='#Box'>Box</a></li>
+<li>(2.0) <a href='#Cylinder'>Cylinder</a></li>
+<li>(3.0) <a href='#Cone'>Cone</a></li>
+<li>(1.0) <a href='#Shadows'>Shadows</a></li>
+<li>(3.0) <a href='#Soft+shadows'>Soft shadows</a></li>
+<li>(2.0) <a href='#Transmission'>Transmission</a></li>
+<li>(1.0) <a href='#Checkerboard'>Checkerboard</a></li>
+<li>(1.5) <a href='#Phong+material'>Phong material</a></li>
+<li>(1.5) <a href='#Special+material'>Special material</a></li>
+<li>(1.0) <a href='#Scene'>Custom Scene</a></li>
+<li>(2.0) <a href='#Animation'>Animation</a></li>
+<li>(0-5) <a href='#Technical+Extensions'>Technical Extensions</a></li>
+<li>(1.0) <a href='#Art+Contest'>Art Contest</a></li>
+</ul></div>
+
+<p><hr><p><a name='Trace Ray and Calculate Color'></a><h2>TraceRay</h2><p><hr><p>
+<p>For the first part of the assignment, I followed the provided
+instructions to complete the <code>traceRay</code> and <code>calculateColor</code>
+functions.</p>
+
+<img src="results/res.png">
+
+<p><hr><p><a name='Triangle'></a><h2>Triangle</h2><p><hr><p>
+(Your description of your implementation of Triangle goes here...) <p>
+
+The first step is to calculate the surface equation P*N + d = 0. First I calculated surface normal of a triangle given three vertices. Bascially it's the vector product of two edges of that triangle. Hence I created a function called "findSurfaceNormal" given three vertices as inputs, where it first calculated edge vectors and then do the cross product. Then we need to determine the distance d. The distance is simply the projection/dot product between the face normal and one point/vertex on the surface. After we find the surface equation, we can use the function "findIntersectionWithPlane" to determine the length and intersection point. Then we need to check whether the intersection point is in the triangle by using the second method mentioned in the lecture slides (calculating cross products). 
+
+<p><hr><p><a name='Sphere'></a><h2>Sphere</h2><p><hr><p>
+(Your description of your implementation of Sphere goes here...) <p>
+
+I followed the method mentioned in the slides. After calculating the intersection point, I used N = (P-O)/||P-O|| to find the face normal. 
+
+<p><hr><p><a name='Box'></a><h2>Box</h2><p><hr><p>
+(Your description of your implementation of Box goes here...) <p>
+
+The faces of a box can be determined using face normals and vertices. Since it's an axis-aligned box, there are three face normals (0, 0, 1), (0, 1, 0) and (1, 0, 0), where each of the face normal can corresponds to two vertices pmin and pmax. Hence it can form a box with six faces. Then for each face we can use "findIntersectionWithPlane" to determine the intersection point and length. Then we check whether the intersection point is in the box by subtracting pmin, and then check whether it's in the box length range. If the point is in the box, then we use "chooseCloserIntersection" to find the closest intersection. 
+
+<p><hr><p><a name='Cylinder'></a><h2>Cylinder</h2><p><hr><p>
+(Your description of your implementation of Cylinder goes here...) <p>
+
+I followed the steps in the assignment specification. After calculating a, b, and c, we can find two intersecting points. Then we need to drop non-positive length, and select the closer one. We can find apex using [center + axis * len]. And find the location of intersection point by using "rayGetOffset". If the two conditions in the specification hold, we could find the normal by using the equations in the following image. <p>
+
+<img src="results/cylinder.jpg"><p>
+
+For getIntersectDisc function, we can use findIntersectionWithPlane, and then check whether it's in the circle range. By calculating the dot product between norm and center, we could find the distance of the plane. 
+
+<p><hr><p><a name='Cone'></a><h2>Cone</h2><p><hr><p>
+(Your description of your implementation of Cone goes here...) <p>
+
+First follow the steps in assignment specification to calculate a, b, and c. Then we can find two intersection points. Similarly to cylinder, we perform some checks such as positive checking, in range checking, validations, then we find the closest intersection point. Determine the normal using the steps in the image. 
+
+<p><img src="results/cone.jpg">
+
+<p><hr><p><a name='Shadows'></a><h2>Shadows</h2><p><hr><p>
+(Your description of your implementation of Shadows goes here...) <p>
+
+First create a ray, where the ray's origin equals to pos and the direction is normalize(lightVec). We can use rayIntersectScene to find the intersection point of this lightVec to the object. Then we could check whether length(lightVec) > the distance to the intersection point. If so, then this point is in shadow. Otherwise it's not. 
+
+<p><hr><p><a name='Soft+shadows'></a><h2>Soft shadows</h2><p><hr><p>
+(Your description of your implementation of Soft shadows goes here...) <p>
+
+Left figure shows how to generate offsets, right figure shows the idea of soft shadow. <p>
+
+I used a double for loop to loop through all the points. For example, for a point (1/N, 0), we can apply offsets in range [0, 1/N]. After getting x and y, we convert x and y using sphere coordinates (follow the equtaions in the link given). Then we can obtain the sample. By calling pointInShadow function to determine whether a lightVec is in shadow, we create a variable to count the number of light vector that are not in shadow. Finally we return the fraction of light that is not in shadow. 
+
+<p> <img src="results/softshadow-1.jpeg"> <p>
+
+N = 25: <p>
+
+<img src="results/softshadow25.jpg">
+
+<p><hr><p><a name='Transmission'></a><h2>Transmission</h2><p><hr><p>
+(Your description of your implementation of Transmission goes here...) <p>
+
+T = (eta * cos(theta_i) - cos(theta_r))N - eta * L <p>
+
+We can obtain theta_i by calculating the dot product between direction and normal vector. By snell's law, we know that sin(theta_r) = eta * sin(theta_i). Then we can obtain both cos(theta_i) and cos(theta_r). L is the direction given. During coding, we need to reverse the above equation by multiplying -1. 
+
+<p><hr><p><a name='Checkerboard'></a><h2>Checkerboard</h2><p><hr><p>
+(Your description of your implementation of Checkerboard goes here...) <p>
+
+We only need to check whether the sum of location is odd or even. If it's even, the block is color1; else the block is color2. By multiplying a scaling factor, we can adjust the checkerboard size. <p>
+
+<img src="results/checkerboard.jpeg">
+
+<p><hr><p><a name='Phong+material'></a><h2>Phong material</h2><p><hr><p>
+(Your description of your implementation of Phong material goes here...) <p>
+
+Phong model has the following equation: <p>
+    I_s = K_s (V * R)^n I_L <p>
+
+We can obtain R by using reflect() function provided, since it's the reflection of L w.r.t N. Note that we need to apply -1 to the reflected result to get the correct direction. Then the intensity is the dot product of eye vector and R, its power is mat.shiness. By multiplying light.intensity divided by attenuation, we can get the result. 
+
+<p><hr><p><a name='Special+material'></a><h2>Special material</h2><p><hr><p>
+(Your description of your implementation of Special material goes here...)<p>
+
+I followed the steps here: https://www.shadertoy.com/view/Msf3WH. <p>
+I set the color using: vec3 col = vec3(rand1 * n, rand2 * n, n), where n is the noise, rand1 and rand2 are random float in range [0, 1]. 
+
+<img src="results/special.jpeg"> <p>
+
+<p><hr><p><a name='Scene'></a><h2>Custom Scene</h2><p><hr><p>
+(Your description of your implementation of Custom Scene goes here...)
+
+<p><hr><p><a name='Animation'></a><h2>Animation</h2><p><hr><p>
+(Your description of your implementation of Animation goes here...)<p>
+
+I used the code here: https://thebookofshaders.com/13/. Basically it uses fBm to warp a space of a fBm by using the following: <p>
+
+f(p) = fbm(p + fbm(p + fbm(p))) <p>
+
+For time variable, I used float(frame) * 0.1. <p>
+
+<img src="results/animated2.gif"> <p>
+
+<p><hr><p><a name='Technical+Extensions'></a><h2>Technical Extensions</h2><p><hr><p>
+(Your description of your implementation of Technical Extensions goes here...)
+
+<p><hr><p><a name='Art+Contest'></a><h2>Art Contest</h2><p><hr><p>
+Remember to appropriately label your submission! If you are submitting a google
+drive link to a movie or animation, give the tag an id that matches the format we
+for your labeled art project images.
+(Your description of your implementation of Art Contest goes here...)
+<p>
+
+(Using animation part)
+
+    I used the code here: https://thebookofshaders.com/13/. Basically it uses fBm to warp a space of a fBm by using the following: <p>
+
+        f(p) = fbm(p + fbm(p + fbm(p))) <p>
+        
+        For time variable, I used float(frame) * 0.1. <p>
+
+<img src="results/art-bzou-warp.png">
+
+
+</div>
+</div>
+</body>
+</html>
