@@ -722,7 +722,9 @@ vec3 calcReflectionVector(Material material, vec3 direction, vec3 normalVector,
   if ((eta * sin(theta_i)) > 1.) {
       vec3 ref_light = reflect(direction, normalVector);
       vec3 random_vec = normalize(vec3(random(direction.xy + v_position), random(direction.yz + v_position), random(direction.zx + v_position)));
-      return normalize(ref_light + random_vec * 0.03);
+      // use normal vector as a radius, sum a random vector and the normal vector to compute the final random vector. 
+      random_vec = normalize(random_vec + normalVector);
+      return normalize(ref_light+random_vec*0.03);
   }
   float theta_r = asin(eta * sin(theta_i));
   vec3 T = eta * direction - (eta * cos_theta_i + cos(theta_r)) * normalVector;
