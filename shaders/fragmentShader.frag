@@ -703,7 +703,10 @@ vec3 calculateColor(Material mat, vec3 posIntersection, vec3 normalVector,
 vec3 calcReflectionVector(Material material, vec3 direction, vec3 normalVector,
                           bool isInsideObj) {
   if (material.materialReflectType == MIRRORREFLECT) {
-    return reflect(direction, normalVector);
+    // Hard coded roughness
+    vec3 ref_light = reflect(direction, normalVector);
+//    vec3 random_vec = normalize(vec3(random(direction.xy + v_position), random(direction.yz + v_position), random(direction.zx + v_position)));
+    return ref_light;
   }
   // If it's not mirror, then it is a refractive material like glass.
   // Compute the refraction direction.
@@ -716,7 +719,11 @@ vec3 calcReflectionVector(Material material, vec3 direction, vec3 normalVector,
   // Return mirror direction by default, so you can see something for now.
   float cos_theta_i = dot(direction, normalVector)/(length(direction) * length(normalVector));
   float theta_i = acos(cos_theta_i);
-  if ((eta * sin(theta_i)) > 1.) return reflect(direction, normalVector);
+  if ((eta * sin(theta_i)) > 1.) {
+      vec3 ref_light = reflect(direction, normalVector);
+      vec3 random_vec = normalize(vec3(random(direction.xy + v_position), random(direction.yz + v_position), random(direction.zx + v_position)));
+      return normalize(ref_light + random_vec * 0.03);
+  }
   float theta_r = asin(eta * sin(theta_i));
   vec3 T = eta * direction - (eta * cos_theta_i + cos(theta_r)) * normalVector;
   return T;
