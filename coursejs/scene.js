@@ -180,6 +180,7 @@ Scene.getIntersectFunction = function() {
 
           vertices[k] = [fixPrecision(v.x, 2), fixPrecision(v.y, 2), fixPrecision(v.z, 2)];
         }
+ 
         for (var k = 0; k < faces.length; k++) {
           var cur_face = faces[k];
           for (var v = 1; v < cur_face.length - 1; v++) {
@@ -217,6 +218,6 @@ Scene.getIntersectFunction = function() {
       "}\n";
   }
   funcStr += "return dist;\n } \n";
-
+  console.log(funcStr);
   return matStr + "\n" + funcStr;
 };

@@ -7,22 +7,24 @@ precision mediump float;
 precision mediump int;
 
 // flag for using soft shadows (set to 1 only when using soft shadows)
-#define SOFT_SHADOWS 0
+#define SOFT_SHADOWS 1
 
 // define number of soft shadow samples to take
-#define SOFT_SAMPLING 100
+#define SOFT_SAMPLING 10
 
 // define constant parameters
 // EPS is for the precision issue
 #define INFINITY 1.0e+12
-#define EPS 1.0e-3
+#define EPS 1.0e-4
+#define EPS_P 1.0e-8
 #define M_PI 3.1415926535897932384626433832795
 
 // define maximum recursion depth for rays
-#define MAX_RECURSION 50
+#define MAX_RECURSION 8
 
 // define constants for scene setting
 #define MAX_LIGHTS 10
+#define AMBIENT vec3(0.2,0.2,0.2)
 
 // define texture types
 #define NONE 0
@@ -38,6 +40,7 @@ precision mediump int;
 #define NONEREFLECT 1
 #define MIRRORREFLECT 2
 #define GLASSREFLECT 3
+#define ICE 4
 
 struct Shape {
   int shapeType;
@@ -550,14 +553,6 @@ vec3 calculateSpecialDiffuseColor(Material mat, vec3 posIntersection,
   // ----------- STUDENT CODE END ------------
 }
 
-vec3 calculateDiffuseColor(Material mat, vec3 posIntersection,
-                           vec3 normalVector) {
-  // Special colors
-  if (mat.special != NONE) {
-    return calculateSpecialDiffuseColor(mat, posIntersection, normalVector);
-  }
-  return vec3(mat.color);
-}
 
 // check if position pos in in shadow with respect to a particular light.
 // lightVec is the vector from that position to that light -- it is not
@@ -619,24 +614,17 @@ vec3 getLightContribution(Light light, Material mat, vec3 posIntersection,
 
   float ratio = 1.0; // default to 1.0 for hard shadows
   if (SOFT_SHADOWS == 1) {
-    // if using soft shadows, call softShadowRatio to determine
-    // fractional light contribution
     ratio = softShadowRatio(posIntersection, lightVector);
   }
   else {
-    // check if point is in shadow with light vector
     if (pointInShadow(posIntersection, lightVector)) {
       return vec3(0.0, 0.0, 0.0);
     }
   }
-
-  // Slight optimization for soft shadows
   if (ratio < EPS) {
     return vec3(0.0, 0.0, 0.0);
   }
 
-
-  // normalize the light vector for the computations below
   float distToLight = length(lightVector);
   lightVector /= distToLight;
 
@@ -655,16 +643,12 @@ vec3 getLightContribution(Light light, Material mat, vec3 posIntersection,
           diffuseColor * diffuseIntensity * light.color / attenuation;
     }
 
-    if (mat.materialType == PHONGMATERIAL) {
-      // Start with just black by default (i.e. no Phong term contribution)
+    if (mat.materialType == PHONGMATERIAL ) {
       vec3 phongTerm = vec3(0.0, 0.0, 0.0);
-      // ----------- STUDENT CODE BEGIN ------------
-      // ----------- Our reference solution uses 4 lines of code.
       vec3 n_eyeVector = normalize(eyeVector);
       vec3 R = -reflect(lightVector, normalVector);
       float intensity = pow(max(0.0, dot(n_eyeVector, R)), mat.shininess) * light.intensity;
       phongTerm = mat.specular * intensity * light.color / attenuation;
-      // ----------- STUDENT CODE END ------------
       contribution += phongTerm;
     }
 
@@ -674,98 +658,100 @@ vec3 getLightContribution(Light light, Material mat, vec3 posIntersection,
   }
 }
 
+
+
+// find reflection or refraction direction (depending on material type)
+vec3 calcReflectionVector(Material material, vec3 direction, vec3 normalVector,
+                          bool isInsideObj) {
+  if(material.materialReflectType == GLASSREFLECT){
+    float eta =
+        (isInsideObj) ? (1.0 / material.refractionRatio) : material.refractionRatio;
+    float cos_theta_i = dot(direction, normalVector)/(length(direction) * length(normalVector));
+    float theta_i = acos(cos_theta_i);
+    if ((eta * sin(theta_i)) > 1.0) {
+        vec3 ref_light = reflect(direction, normalVector);
+        vec3 random_vec = normalize(vec3(random(direction.xy + v_position), random(direction.yz + v_position), random(direction.zx + v_position)));
+        // use normal vector as a radius, sum a random vector and the normal vector to compute the final random vector. 
+        random_vec = normalize(random_vec + normalVector);
+        return normalize(ref_light+random_vec*0.1);
+    }
+    float theta_r = asin(eta * sin(theta_i));
+    vec3 T = eta * direction - (eta * cos_theta_i + cos(theta_r)) * normalVector;
+    return T;
+  }else  if(material.materialReflectType == MIRRORREFLECT) {
+    vec3 ref_light = reflect(direction, normalVector);
+    return ref_light;
+  } else{
+    vec3 random_vec = normalize(vec3(random(direction.xy + v_position), random(direction.yz + v_position), random(direction.zx + v_position)));
+    // use normal vector as a radius, sum a random vector and the normal vector to compute the final random vector. 
+    random_vec = normalize(random_vec + normalVector);
+    vec3 ref_light = reflect(direction, normalVector);
+    return normalize(ref_light+random_vec*20.0);
+  }
+}
+
+
+
+
+
+
+vec3 calculateDiffuseColor(Material mat, vec3 posIntersection,
+                           vec3 normalVector) {
+  // Special colors
+  if (mat.special != NONE) {
+    return calculateSpecialDiffuseColor(mat, posIntersection, normalVector);
+  }
+  return vec3(mat.color);
+}
+
+
+
 vec3 calculateColor(Material mat, vec3 posIntersection, vec3 normalVector,
-                    vec3 eyeVector, bool phongOnly) {
-  // The diffuse color of the material at the point of intersection
-  // Needed to compute the color when accounting for the lights in the scene
+                    vec3 eyeVector, bool phongOnly, vec3 nextColor, vec3 nectCoord) {
+  
   vec3 diffuseColor = calculateDiffuseColor(mat, posIntersection, normalVector);
 
-  // color defaults to black when there are no lights
   vec3 outputColor = vec3(0.0, 0.0, 0.0);
 
-  // Loop over the MAX_LIGHTS different lights, taking care not to exceed
-  // numLights (GLSL restriction), and accumulate each light's contribution
-  // to the point of intersection in the scene.
-  // ----------- STUDENT CODE BEGIN ------------
-  // ----------- Our reference solution uses 9 lines of code.
-  // Return diffuseColor by default, so you can see something for now.
+  //ambient
+  outputColor += AMBIENT * diffuseColor;
+
   for (int i = 0; i < MAX_LIGHTS; i++) {
     if (i >= numLights) break;
     vec3 contribution = getLightContribution(lights[i], mat, posIntersection, normalVector, eyeVector, phongOnly, diffuseColor);
     outputColor += contribution;
   }
-  // return diffuseColor;
+
+
+  vec3 R = normalize(-reflect(nectCoord - posIntersection, normalVector));
+  
+  float intensity = pow(max(0.0, dot(eyeVector, R)), mat.shininess);
+    
+  outputColor += mat.specular * nextColor * intensity * 2.0 ;
+
   return outputColor;
-  // ----------- STUDENT CODE END ------------
 }
 
-// find reflection or refraction direction (depending on material type)
-vec3 calcReflectionVector(Material material, vec3 direction, vec3 normalVector,
-                          bool isInsideObj) {
-  if (material.materialReflectType == MIRRORREFLECT) {
-    return reflect(direction, normalVector);
-  }
-  // If it's not mirror, then it is a refractive material like glass.
-  // Compute the refraction direction.
-  // See lecture 13 slide (lighting) on Snell's law.
-  // The eta below is eta_i/eta_r.
-  // ----------- STUDENT CODE BEGIN ------------
-  float eta =
-      (isInsideObj) ? 1.0 / material.refractionRatio : material.refractionRatio;
-  // ----------- Our reference solution uses 5 lines of code.
-  // Return mirror direction by default, so you can see something for now.
-  float cos_theta_i = dot(direction, normalVector)/(length(direction) * length(normalVector));
-  float theta_i = acos(cos_theta_i);
-  if ((eta * sin(theta_i)) > 1.) return reflect(direction, normalVector);
-  float theta_r = asin(eta * sin(theta_i));
-  vec3 T = eta * direction - (eta * cos_theta_i + cos(theta_r)) * normalVector;
-  return T;
-  // ----------- STUDENT CODE END ------------
-}
+
 
 vec3 traceRay(Ray ray) {
-  // Accumulate the final color from tracing this ray into resColor.
   vec3 resColor = vec3(0.0, 0.0, 0.0);
-
-  // Accumulate a weight from tracing this ray through different materials
-  // based on their BRDFs. Initially all 1.0s (i.e. scales the initial ray's
-  // RGB color by 1.0 across all color channels). This captures the BRDFs
-  // of the materials intersected by the ray's journey through the scene.
+  float absorbtion = 0.1;
   vec3 resWeight = vec3(1.0, 1.0, 1.0);
 
-  // Flag for whether the ray is currently inside of an object.
   bool isInsideObj = false;
 
-  // Iteratively trace the ray through the scene up to MAX_RECURSION bounces.
+#if 0
   for (int depth = 0; depth < MAX_RECURSION; depth++) {
-    // Fire the ray into the scene and find an intersection, if one exists.
-    //
-    // To do so, trace the ray using the rayIntersectScene function, which
-    // also accepts a Material struct and an Intersection struct to store
-    // information about the point of intersection. The function returns
-    // a distance of how far the ray travelled before it intersected an object.
-    //
-    // Then, check whether or not the ray actually intersected with the scene.
-    // A ray does not intersect the scene if it intersects at a distance
-    // "equal to zero" or far beyond the bounds of the scene. If so, break
-    // the loop and do not trace the ray any further.
-    // (Hint: You should probably use EPS and INFINITY.)
-    // ----------- STUDENT CODE BEGIN ------------
     Material hitMaterial;
     Intersection intersect;
-    // ----------- Our reference solution uses 4 lines of code.
     float len = rayIntersectScene(ray, hitMaterial, intersect);
     if (abs(len) <= EPS || len >= INFINITY) break; 
-    // ----------- STUDENT CODE END ------------
-
-    // Compute the vector from the ray towards the intersection.
+   
     vec3 posIntersection = intersect.position;
     vec3 normalVector    = intersect.normal;
-
     vec3 eyeVector = normalize(ray.origin - posIntersection);
 
-    // Determine whether we are inside an object using the dot product
-    // with the intersection's normal vector
     if (dot(eyeVector, normalVector) < 0.0) {
         normalVector = -normalVector;
         isInsideObj = true;
@@ -773,65 +759,116 @@ vec3 traceRay(Ray ray) {
         isInsideObj = false;
     }
 
-    // Material is reflective if it is either mirror or glass in this assignment
     bool reflective = (hitMaterial.materialReflectType == MIRRORREFLECT ||
-                       hitMaterial.materialReflectType == GLASSREFLECT);
+                      hitMaterial.materialReflectType == GLASSREFLECT ||
+                      hitMaterial.materialReflectType == ICE);
 
-    // Compute the color at the intersection point based on its material
-    // and the lighting in the scene
-    vec3 outputColor = calculateColor(hitMaterial, posIntersection,
-      normalVector, eyeVector, reflective);
-
-    // A material has a reflection type (as seen above) and a reflectivity
-    // attribute. A reflectivity "equal to zero" indicates that the material
-    // is neither reflective nor refractive.
-
-    // If a material is neither reflective nor refractive...
-    // (1) Scale the output color by the current weight and add it into
-    //     the accumulated color.
-    // (2) Then break the for loop (i.e. do not trace the ray any further).
-    // ----------- STUDENT CODE BEGIN ------------
-    // ----------- Our reference solution uses 4 lines of code.
-    if (!reflective) {
-      outputColor = outputColor * resWeight;
-      resColor += outputColor;
-      break;
-    }
-    // ----------- STUDENT CODE END ------------
-
-    // If the material is reflective or refractive...
-    // (1) Use calcReflectionVector to compute the direction of the next
-    //     bounce of this ray.
-    // (2) Update the ray object with the next starting position and
-    //     direction to prepare for the next bounce. You should modify the
-    //     ray's origin and direction attributes. Be sure to normalize the
-    //     direction vector.
-    // (3) Scale the output color by the current weight and add it into
-    //     the accumulated color.
-    // (4) Update the current weight using the material's reflectivity
-    //     so that it is the appropriate weight for the next ray's color.
-    // ----------- STUDENT CODE BEGIN ------------
-    // ----------- Our reference solution uses 8 lines of code.
-    if (reflective) {
-      // (1) material, direction, normalVector, isInsideObj
-      vec3 nextDir = calcReflectionVector(hitMaterial, ray.direction, normalVector, isInsideObj);
-
-      // (2)
+ 
       ray.origin = rayGetOffset(ray, len);
+      vec3 nextDir = calcReflectionVector(hitMaterial, ray.direction, normalVector, isInsideObj);
       ray.direction = normalize(nextDir);
+      
 
-      // (3)
+      vec3 outputColor = calculateColor(hitMaterial, posIntersection,normalVector, eyeVector, reflective,
+      vec3(0.0, 0.0, 0.0),vec3(0.0, 0.0, 0.0));
       outputColor = outputColor * resWeight;
-      resColor += outputColor;
-
-      // (4)
       resWeight *= hitMaterial.reflectivity;
-    }
-    // ----------- STUDENT CODE END ------------
+      resColor += outputColor;
+      if (!reflective) break;
+
+     
+ 
+    
   }
 
-  return resColor;
+#else
+  Material mats[MAX_RECURSION];
+  vec3 intersections[MAX_RECURSION];
+  vec3 normals[MAX_RECURSION];
+  vec3 eyeVectors[MAX_RECURSION];
+  bool isReflective[MAX_RECURSION];
+
+  vec3 origin[MAX_RECURSION+1];
+
+  vec3 resWeights[MAX_RECURSION];
+
+
+  origin[0] = ray.origin;
+  int hits = 0;
+
+  for (int depth = 0; depth < MAX_RECURSION; depth++) {
+    Material hitMaterial;
+    Intersection intersect;
+    float len = rayIntersectScene(ray, hitMaterial, intersect);
+    if (abs(len) <= EPS || len >= INFINITY) break; 
+   
+    hits++;
+
+    //store materials
+    mats[depth] = hitMaterial;
+
+    //store normals
+    vec3 posIntersection = intersect.position;
+    vec3 normalVector    = intersect.normal;
+    vec3 eyeVector = normalize(ray.origin - posIntersection);
+    if (dot(eyeVector, normalVector) < 0.0) {
+        normalVector = -normalVector;
+        isInsideObj = true;
+    } else {
+        isInsideObj = false;
+    }
+    normals[depth] = normalVector;
+
+    //store reflective flags
+    isReflective[depth] = (hitMaterial.materialReflectType == MIRRORREFLECT ||
+                      hitMaterial.materialReflectType == GLASSREFLECT ||
+                      hitMaterial.materialReflectType == ICE );
+    //store intersections
+    ray.origin = rayGetOffset(ray, len);
+    origin[depth+1] = ray.origin;
+    vec3 nextDir = calcReflectionVector(hitMaterial, ray.direction, normalVector, isInsideObj);
+    ray.direction = normalize(nextDir);
+
+    //store resWeights
+    if(depth == 0)
+      resWeights[depth] = vec3(1.0,1.0,1.0);
+    else
+      resWeights[depth] = hitMaterial.reflectivity * resWeights[depth-1]
+        * (isReflective[depth-1] ? 0.9:0.1);
+
+    
+  } 
+
+  // calculate color
+  vec3 nextColor = vec3(0.0, 0.0, 0.0);
+  for (int i = MAX_RECURSION; i>=0; i--) {
+    if(i<=hits-2){
+      vec3 currColor = calculateColor(mats[i], origin[i+1], normals[i], 
+        normalize(origin[i] - origin[i+1]), isReflective[i], nextColor, origin[i+2]);
+      nextColor = currColor * resWeights[i];
+      resColor+=nextColor;
+    }  
+  }
+
+#endif
+
+
+  return resColor ;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void main() {
   float cameraFOV = 0.8;

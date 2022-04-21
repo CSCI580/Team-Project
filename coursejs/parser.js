@@ -87,4 +87,5 @@ Parser.parseTxt = function(textFile) {
   request.overrideMimeType("text/plain");
   request.send(null);
   return request.responseText;
+
 };

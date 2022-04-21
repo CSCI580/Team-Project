@@ -17,6 +17,8 @@ Raytracer.MYSPECIAL = 2;
 Raytracer.NONEREFLECT = 1;
 Raytracer.MIRRORREFLECT = 2;
 Raytracer.GLASSREFLECT = 3;
+Raytracer.ICE = 4;
+Raytracer.FRESNEL_BLEND_REFLECTION = 5;
 
 Raytracer.curMaterial = {};
 
@@ -28,7 +30,7 @@ Raytracer.mouseDown = false;
 Raytracer.lastMouseX = null;
 Raytracer.lastMouseY = null;
 //
-Raytracer.camera = [0.15, -0.05, 0];
+Raytracer.camera = [0.5, -0.05, 0];
 
 Raytracer.handleMouseDown = function(event) {
   Raytracer.mouseDown = true;
@@ -88,6 +90,19 @@ Raytracer.initShader = function(program, shaderType, src, debug) {
   this.gl.attachShader(program, shader);
   return shader;
 };
+
+function keyDownTextField(e) {
+  var keyCode = e.keyCode;
+  //alert("You hit the enter key: "+keyCode);
+      
+    if(keyCode==65) {
+      // Raytracer.camera[0]-=1;
+      // alert("You hit the enter key: "+Raytracer.camera);
+      // needsToDraw = true
+    } else {
+    
+    }
+  }
 
 Raytracer.init = function(height, width, debug) {
   canvas = document.getElementById("canvas");
@@ -153,9 +168,13 @@ Raytracer.init = function(height, width, debug) {
   Raytracer.RotationMatrix = mat4.create();
   mat4.identity(Raytracer.RotationMatrix);
 
+  
   canvas.onmousedown = Raytracer.handleMouseDown;
   document.onmouseup = Raytracer.handleMouseUp;
   document.onmousemove = Raytracer.handleMouseMove;
+  // document.addEventListener("keydown", keyDownTextField, false);
+
+
 };
 
 Raytracer.setCamera = function(cameraAngle) {
