@@ -38,15 +38,30 @@ if __name__ == "__main__":
     # objects.append(s3)
     # current box is from (-10, -10, 0) to (5, 5, 15)
     # bubble cloud 1: center(0, 0, 5) radius(~0.2)
-    center1 = [0, 0, 5]
-    radius1 = random.random()/2+0.1
-    # for i in range(100):
-    #     s = Sphere(comment="random"+str(i),
-    #                center=center1,
-    #                radius=radius1,
-    #                material=Material(color=[random.random(), random.random(), random.random()],
-    #                                  reflectType=reflectType.GLASSREFLECT))
-    #     objects.append(s)
+    bubble_list = []
+    with open("bubbleLocation.txt", 'r') as f:
+        data = f.read().splitlines()
+        for d in data:
+            center = d.replace("[", "").replace(
+                "]", "").split(', ')
+            center = [float(i) for i in center]
+            bubble_list.append(center)
+    recentered_bubble_list = []
+    for vertex in bubble_list:
+        vertex[0] = (vertex[0]/512*15 - 10) * 2
+        vertex[1] = (vertex[1]/512*15 - 10) * 2.2
+        vertex[2] = (vertex[2]/512*15-7)*1.7
+
+        recentered_bubble_list.append(vertex)
+    # print(recentered_bubble_list)
+
+    for center in recentered_bubble_list:
+        s = Sphere(comment="random"+str(center),
+                   center=center,
+                   radius=random.uniform(0, 1)/6,
+                   material=Material(color=[random.uniform(0, 1), random.uniform(0, 1), random.uniform(0, 1)],
+                                     reflectType=reflectType.GLASSREFLECT))
+        objects.append(s)
     # #cylinder
     # cy = Cylinder(comment="the cylinder", bottomCenter=[15.0, -30.0, 20.0], topCenter=[15.0, -6.0, 20.0], radius = 7,
     #               material=Material(shininess=100,texture=textureType.CHECKERBOARD))
