@@ -7,11 +7,8 @@ from enum import Enum
 from http.server import HTTPServer, CGIHTTPRequestHandler
 from unittest import TextTestResult
 from buildScene_util import *
-
-
-
 if __name__ == "__main__":
-    #generate objects
+    # generate objects
     objects = []
     
     # walls
@@ -131,10 +128,9 @@ if __name__ == "__main__":
     for i in objects:
         data['objects'].append(dict(i))
     for i in lights:
-        data['lights'].append(dict(i))   
+        data['lights'].append(dict(i))
     with open('./scenes/myscene.json', 'w') as outfile:
         json.dump(data, outfile, indent=4)
-        
     # #hold server
     # # Make sure the server is created at current directory
     # os.chdir('.')
