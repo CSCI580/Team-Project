@@ -218,6 +218,5 @@ Scene.getIntersectFunction = function() {
       "}\n";
   }
   funcStr += "return dist;\n } \n";
-  console.log(funcStr);
   return matStr + "\n" + funcStr;
 };

@@ -5,2012 +5,31 @@
             "material": {
                 "type": "PHONGMATERIAL",
                 "color": [
-                    0.7,
-                    0.7,
-                    0.7
+                    0.75,
+                    0.75,
+                    0.75
                 ],
-                "shininess": 5,
+                "shininess": 10,
                 "specular": [
-                    0.1,
-                    0.1,
-                    0.1
+                    0.2,
+                    0.2,
+                    0.2
                 ],
                 "reflectivity": 1,
                 "reflectType": "NONEREFLECT",
                 "refractionRatio": 1.31,
-                "special": "NONE"
+                "special": "CHECKERBOARD"
             },
-            "comment": "//front wall",
+            "comment": "//back wall",
             "normal": [
                 0,
                 0,
-                -1
+                1
             ],
-            "dist": 40
+            "dist": 75
         },
         {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0.1,
-                    0.1,
-                    0.35
-                ],
-                "shininess": 100,
-                "specular": [
-                    0.8,
-                    0.8,
-                    0.8
-                ],
-                "reflectivity": 1,
-                "reflectType": "NONEREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//bottom",
-            "center": [
-                0,
-                -835,
-                30
-            ],
-            "radius": 800
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0.2,
-                    0.7,
-                    0.2
-                ],
-                "shininess": 100,
-                "specular": [
-                    0.1,
-                    0.1,
-                    0.1
-                ],
-                "reflectivity": 1,
-                "reflectType": "NONEREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//left",
-            "center": [
-                -840,
-                0,
-                30
-            ],
-            "radius": 800
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0.7,
-                    0.2,
-                    0.2
-                ],
-                "shininess": 100,
-                "specular": [
-                    0.1,
-                    0.1,
-                    0.1
-                ],
-                "reflectivity": 1,
-                "reflectType": "NONEREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//right",
-            "center": [
-                840,
-                0,
-                30
-            ],
-            "radius": 800
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0.7,
-                    0.7,
-                    0.7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0.1,
-                    0.1,
-                    0.1
-                ],
-                "reflectivity": 1,
-                "reflectType": "NONEREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//back",
-            "center": [
-                0,
-                0,
-                900
-            ],
-            "radius": 800
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0.2,
-                    0.2,
-                    0.2
-                ],
-                "shininess": 100,
-                "specular": [
-                    0.1,
-                    0.1,
-                    0.1
-                ],
-                "reflectivity": 1,
-                "reflectType": "NONEREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//top",
-            "center": [
-                0,
-                835,
-                30
-            ],
-            "radius": 800
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-6.699776785714287, -15.305245535714286, 31.368788439280095]",
-            "center": [
-                -6.699776785714287,
-                -15.305245535714286,
-                31.368788439280095
-            ],
-            "radius": 0.15716540908291285
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[2.5814732142857135, -16.432254464285712, 35.35103313364793, 361.4495835624433]",
-            "center": [
-                2.5814732142857135,
-                -16.432254464285712,
-                35.35103313364793,
-                361.4495835624433
-            ],
-            "radius": 0.04192486829028663
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[2.570424107142853, -23.52578125, 26.007463026783753]",
-            "center": [
-                2.570424107142853,
-                -23.52578125,
-                26.007463026783753
-            ],
-            "radius": 0.19826280300203145
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[1.0235491071428606, -23.669419642857143, 24.893417668367114]",
-            "center": [
-                1.0235491071428606,
-                -23.669419642857143,
-                24.893417668367114
-            ],
-            "radius": 0.2159214469859305
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-2.390625, -23.846205357142857, 23.118247928358507]",
-            "center": [
-                -2.390625,
-                -23.846205357142857,
-                23.118247928358507
-            ],
-            "radius": 0.2288817420832283
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[2.183705357142861, -21.194419642857145, 34.172677234097684]",
-            "center": [
-                2.183705357142861,
-                -21.194419642857145,
-                34.172677234097684
-            ],
-            "radius": 0.06941639880095507
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-7.417968750000001, -25.05055803571429, 25.964911425295593]",
-            "center": [
-                -7.417968750000001,
-                -25.05055803571429,
-                25.964911425295593
-            ],
-            "radius": 0.21450956934414975
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[0.913058035714287, -14.808035714285714, 30.721522497067525]",
-            "center": [
-                0.913058035714287,
-                -14.808035714285714,
-                30.721522497067525
-            ],
-            "radius": 0.21439571474954133
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-5.3296875, -17.95703125, 25.34176036819804, 458.92391362763556]",
-            "center": [
-                -5.3296875,
-                -17.95703125,
-                25.34176036819804,
-                458.92391362763556
-            ],
-            "radius": 0.26015182043391544
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-8.003571428571426, -24.6859375, 23.6133911091776]",
-            "center": [
-                -8.003571428571426,
-                -24.6859375,
-                23.6133911091776
-            ],
-            "radius": 0.2949428248788171
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-4.534151785714287, -22.78549107142857, 22.261721385750562]",
-            "center": [
-                -4.534151785714287,
-                -22.78549107142857,
-                22.261721385750562
-            ],
-            "radius": 0.2783102775522422
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-6.52299107142857, -16.266517857142862, 33.80423348987533, 310.3462185384293]",
-            "center": [
-                -6.52299107142857,
-                -16.266517857142862,
-                33.80423348987533,
-                310.3462185384293
-            ],
-            "radius": 0.2565408282058174
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[1.3329241071428606, -22.045200892857146, 32.581911972745495]",
-            "center": [
-                1.3329241071428606,
-                -22.045200892857146,
-                32.581911972745495
-            ],
-            "radius": 0.11762106208179206
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-5.771651785714287, -17.51506696428571, 28.125710751490132]",
-            "center": [
-                -5.771651785714287,
-                -17.51506696428571,
-                28.125710751490132
-            ],
-            "radius": 0.1853333418671915
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[1.4213169642857133, -16.01238839285714, 23.3384103535098]",
-            "center": [
-                1.4213169642857133,
-                -16.01238839285714,
-                23.3384103535098
-            ],
-            "radius": 0.24067891441140518
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-6.423549107142857, -16.067633928571425, 27.18508505992205]",
-            "center": [
-                -6.423549107142857,
-                -16.067633928571425,
-                27.18508505992205
-            ],
-            "radius": 0.3297127447341309
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-5.3296875, -17.95703125, 34.035290391369216]",
-            "center": [
-                -5.3296875,
-                -17.95703125,
-                34.035290391369216
-            ],
-            "radius": 0.24804079298982495
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[1.0898437500000002, -17.95703125, 25.35899029977221]",
-            "center": [
-                1.0898437500000002,
-                -17.95703125,
-                25.35899029977221
-            ],
-            "radius": 0.0027842582901505355
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[4.006808035714287, -18.89620535714286, 27.496183257209843]",
-            "center": [
-                4.006808035714287,
-                -18.89620535714286,
-                27.496183257209843
-            ],
-            "radius": 0.062256342012134445
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-2.501116071428574, -15.846651785714286, 21.097298930384426]",
-            "center": [
-                -2.501116071428574,
-                -15.846651785714286,
-                21.097298930384426
-            ],
-            "radius": 0.12800015474960857
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[2.3273437500000003, -20.807700892857145, 32.07064444867184]",
-            "center": [
-                2.3273437500000003,
-                -20.807700892857145,
-                32.07064444867184
-            ],
-            "radius": 0.1496658270398
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-3.5728794642857133, -23.790959821428572, 30.418266658675016]",
-            "center": [
-                -3.5728794642857133,
-                -23.790959821428572,
-                30.418266658675016
-            ],
-            "radius": 0.2468107232011385
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-7.3958705357142875, -23.879352678571426, 35.1792581453398]",
-            "center": [
-                -7.3958705357142875,
-                -23.879352678571426,
-                35.1792581453398
-            ],
-            "radius": 0.06582630079194685
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-7.042299107142857, -14.642299107142861, 28.91747944579592]",
-            "center": [
-                -7.042299107142857,
-                -14.642299107142861,
-                28.91747944579592
-            ],
-            "radius": 0.15484903172289466
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-4.55625, -17.18359375, 24.10077753042475]",
-            "center": [
-                -4.55625,
-                -17.18359375,
-                24.10077753042475
-            ],
-            "radius": 0.1091250383022686
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[0.007031250000000044, -20.74140625, 21.340605197803455]",
-            "center": [
-                0.007031250000000044,
-                -20.74140625,
-                21.340605197803455
-            ],
-            "radius": 0.08687402262419779
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[3.520647321428574, -18.907254464285714, 34.34517040243792, 294.95409704947565]",
-            "center": [
-                3.520647321428574,
-                -18.907254464285714,
-                34.34517040243792,
-                294.95409704947565
-            ],
-            "radius": 0.05918133877415569
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[3.929464285714287, -19.603348214285713, 21.647772306718988]",
-            "center": [
-                3.929464285714287,
-                -19.603348214285713,
-                21.647772306718988
-            ],
-            "radius": 0.1521650895802823
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[1.9627232142857132, -22.763392857142858, 29.273869628693006]",
-            "center": [
-                1.9627232142857132,
-                -22.763392857142858,
-                29.273869628693006
-            ],
-            "radius": 0.1907520857675161
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[3.697433035714287, -13.736272321428572, 33.9208683400428]",
-            "center": [
-                3.697433035714287,
-                -13.736272321428572,
-                33.9208683400428
-            ],
-            "radius": 0.05728703895434687
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[3.1228794642857136, -17.86863839285714, 21.934032105902112]",
-            "center": [
-                3.1228794642857136,
-                -17.86863839285714,
-                21.934032105902112
-            ],
-            "radius": 0.3020953015253149
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.153217626663811,
-                    0.9013494114045488,
-                    0.47154754199158466
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-<<<<<<< HEAD
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[2.2168526785714264, -25.26049107142857, 23.351521401115054]",
-            "center": [
-                2.2168526785714264,
-                -25.26049107142857,
-                23.351521401115054
-            ],
-            "radius": 0.2412049283455592
-=======
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[0.1143973214285694, -8.989676339285714, 9.631346683260269]",
-            "center": [
-                0.1143973214285694,
-                -8.989676339285714,
-                9.631346683260269
-            ],
-            "radius": 0.0068524710504102955
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-=======
-                    0.5611845158473004,
-                    0.45517629082182787,
-                    0.3997270031593727
-                ],
-                "shininess": 1000,
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-<<<<<<< HEAD
-            "comment": "//random[-5.3296875, -17.95703125, 25.34176036819804, 458.92391362763556]",
-            "center": [
-                -5.3296875,
-                -17.95703125,
-                25.34176036819804,
-                458.92391362763556
-            ],
-            "radius": 0.20775403919229285
-=======
-            "comment": "//random[0.2315848214285694, -1.5315290178571435, 10.19809928513448]",
-            "center": [
-                0.2315848214285694,
-                -1.5315290178571435,
-                10.19809928513448
-            ],
-            "radius": 0.04675843311551844
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.1499555006241119,
-                    0.1162836679931869,
-                    0.7799342425661109
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-<<<<<<< HEAD
-            "comment": "//random[0.6368303571428606, -21.448549107142856, 25.929511679254947]",
-            "center": [
-                0.6368303571428606,
-                -21.448549107142856,
-                25.929511679254947
-            ],
-            "radius": 0.02083010060125808
-=======
-            "comment": "//random[-0.22042410714285765, -9.717075892857142, 3.772545313611462]",
-            "center": [
-                -0.22042410714285765,
-                -9.717075892857142,
-                3.772545313611462
-            ],
-            "radius": 0.12909982770896022
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.25764525947113903,
-                    0.44352767039961216,
-                    0.22602531082792843
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-<<<<<<< HEAD
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[3.8521205357142874, -24.91796875, 32.17432634466516]",
-            "center": [
-                3.8521205357142874,
-                -24.91796875,
-                32.17432634466516
-            ],
-            "radius": 0.26661434189799793
-=======
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-0.8482142857142883, 0.356026785714283, 3.3470898555962405]",
-            "center": [
-                -0.8482142857142883,
-                0.356026785714283,
-                3.3470898555962405
-            ],
-            "radius": 0.038171800645237564
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.812762791930446,
-                    0.3318319232546758,
-                    0.5674659539053664
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-<<<<<<< HEAD
-            "comment": "//random[2.2389508928571398, -22.332477678571426, 34.26862043014134]",
-            "center": [
-                2.2389508928571398,
-                -22.332477678571426,
-                34.26862043014134
-            ],
-            "radius": 0.043495141189470364
-=======
-            "comment": "//random[-9.026227678571429, -5.5736607142857135, 11.215743846435602]",
-            "center": [
-                -9.026227678571429,
-                -5.5736607142857135,
-                11.215743846435602
-            ],
-            "radius": 0.02282676858438822
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.022407881604582847,
-                    0.9370687345135355,
-                    0.3832883102925204
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-<<<<<<< HEAD
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-3.3629464285714303, -22.078348214285715, 29.45291666775969]",
-            "center": [
-                -3.3629464285714303,
-                -22.078348214285715,
-                29.45291666775969
-            ],
-            "radius": 0.1563908125204001
-=======
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-1.0239955357142883, -10.435267857142858, 3.627936288362855, 459.02332673597164]",
-            "center": [
-                -1.0239955357142883,
-                -10.435267857142858,
-                3.627936288362855,
-                459.02332673597164
-            ],
-            "radius": 0.09971768904501326
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.711737149681034,
-                    0.7607627753829408,
-                    0.5145965197158567
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-<<<<<<< HEAD
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-5.771651785714287, -24.40970982142857, 22.96682482833187]",
-            "center": [
-                -5.771651785714287,
-                -24.40970982142857,
-                22.96682482833187
-            ],
-            "radius": 0.06771006704203719
-=======
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-9.017857142857142, -9.23828125, 2.694492590981332]",
-            "center": [
-                -9.017857142857142,
-                -9.23828125,
-                2.694492590981332
-            ],
-            "radius": 0.07945571535030145
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.4190360346023815,
-                    0.10000033546887155,
-                    0.1917221491623442
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-<<<<<<< HEAD
-            "comment": "//random[0.526339285714287, -15.49308035714286, 34.56947504679266]",
-            "center": [
-                0.526339285714287,
-                -15.49308035714286,
-                34.56947504679266
-            ],
-            "radius": 0.013615545282935923
-=======
-            "comment": "//random[-8.599330357142856, -0.4266183035714264, 13.173396439725682]",
-            "center": [
-                -8.599330357142856,
-                -0.4266183035714264,
-                13.173396439725682
-            ],
-            "radius": 0.05455803769356752
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.8809972345781973,
-                    0.7274190355874534,
-                    0.3999370818448502
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-<<<<<<< HEAD
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[0.3164062500000001, -17.18359375, 30.507914776422417]",
-            "center": [
-                0.3164062500000001,
-                -17.18359375,
-                30.507914776422417
-            ],
-            "radius": 0.25190506801294893
-=======
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-7.912946428571429, 0.05217633928571317, 5.952480234581597]",
-            "center": [
-                -7.912946428571429,
-                0.05217633928571317,
-                5.952480234581597
-            ],
-            "radius": 0.16528532274551466
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.22783032420048688,
-                    0.10302497208391836,
-                    0.41694902198692185
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-<<<<<<< HEAD
-            "comment": "//random[-2.0260044642857133, -14.531808035714286, 26.981530384716578]",
-            "center": [
-                -2.0260044642857133,
-                -14.531808035714286,
-                26.981530384716578
-            ],
-            "radius": 0.17989980378461665
-=======
-            "comment": "//random[-0.20368303571428825, -0.05831473214285659, 8.299076111054706]",
-            "center": [
-                -0.20368303571428825,
-                -0.05831473214285659,
-                8.299076111054706
-            ],
-            "radius": 0.03191490924192969
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.8359006129104812,
-                    0.2674577745337945,
-                    0.032479728577514355
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-<<<<<<< HEAD
-            "comment": "//random[3.078683035714287, -18.874107142857138, 27.568898313375843]",
-            "center": [
-                3.078683035714287,
-                -18.874107142857138,
-                27.568898313375843
-            ],
-            "radius": 0.05402767389875692
-=======
-            "comment": "//random[-1.0658482142857153, 0.4757254464285737, 9.588132458403065]",
-            "center": [
-                -1.0658482142857153,
-                0.4757254464285737,
-                9.588132458403065
-            ],
-            "radius": 0.10776613218781417
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.2477818119374613,
-                    0.319669992101384,
-                    0.32092840397851674
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-<<<<<<< HEAD
-            "comment": "//random[-1.6503348214285738, -24.542299107142856, 21.57190032407854]",
-            "center": [
-                -1.6503348214285738,
-                -24.542299107142856,
-                21.57190032407854
-            ],
-            "radius": 0.2855209198028024
-=======
-            "comment": "//random[-0.0362723214285694, -9.431640625, 9.828605287220968]",
-            "center": [
-                -0.0362723214285694,
-                -9.431640625,
-                9.828605287220968
-            ],
-            "radius": 0.010585480104221797
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.014741972652842605,
-                    0.19750770868011225,
-                    0.30208658606285044
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 1000,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-<<<<<<< HEAD
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[-7.5395089285714265, -15.747209821428573, 32.153298147278825, 341.2053139788253]",
-            "center": [
-                -7.5395089285714265,
-                -15.747209821428573,
-                32.153298147278825,
-                341.2053139788253
-            ],
-            "radius": 0.25415443446260955
-=======
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[0.0809151785714306, -4.413504464285715, 5.930152714341534]",
-            "center": [
-                0.0809151785714306,
-                -4.413504464285715,
-                5.930152714341534
-            ],
-            "radius": 0.06535720309042571
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0.5373995917518085,
-                    0.4908066484743956,
-                    0.6608915240122654
-                ],
-                "shininess": 1000,
-                "specular": [
-                    1,
-                    1,
-                    1
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-0.3543526785714306, 0.05217633928571317, 10.172542221043788]",
-            "center": [
-                -0.3543526785714306,
-                0.05217633928571317,
-                10.172542221043788
-            ],
-            "radius": 0.02242447291656256
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[3.0234375000000004, -14.255580357142861, 28.63714945033543]",
-            "center": [
-                3.0234375000000004,
-                -14.255580357142861,
-                28.63714945033543
-            ],
-            "radius": 0.2713470350515525
-=======
-                    0.3320757252502088,
-                    0.8758648557749665,
-                    0.8044471709302902
-                ],
-                "shininess": 1000,
-                "specular": [
-                    1,
-                    1,
-                    1
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-7.059151785714285, -10.674665178571429, 9.877436835433107]",
-            "center": [
-                -7.059151785714285,
-                -10.674665178571429,
-                9.877436835433107
-            ],
-            "radius": 0.0039025236627840965
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.44571754631322225,
-                    0.8528228766779885,
-                    0.8206829588997073
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[2.4820312500000004, -26.18861607142857, 30.06109157437716]",
-            "center": [
-                2.4820312500000004,
-                -26.18861607142857,
-                30.06109157437716
-            ],
-            "radius": 0.10593318111291761
-=======
-                    1,
-                    1,
-                    1
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[0.1981026785714306, -7.857142857142858, 12.61934149548717]",
-            "center": [
-                0.1981026785714306,
-                -7.857142857142858,
-                12.61934149548717
-            ],
-            "radius": 0.14289086151269548
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[0.6810267857142869, -15.592522321428573, 34.51566088830653]",
-            "center": [
-                0.6810267857142869,
-                -15.592522321428573,
-                34.51566088830653
-            ],
-            "radius": 0.16796321044632134
-=======
-                    0.6474122584773794,
-                    0.6493555659121898,
-                    0.8615386747996047
-                ],
-                "shininess": 1000,
-                "specular": [
-                    1,
-                    1,
-                    1
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-7.159598214285715, 0.4388950892857132, 10.900033692056372]",
-            "center": [
-                -7.159598214285715,
-                0.4388950892857132,
-                10.900033692056372
-            ],
-            "radius": 0.09177803111305068
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-<<<<<<< HEAD
-                    0,
-                    0,
-                    0
-=======
-                    0.4035378344831285,
-                    0.9518011873681226,
-                    0.9377852259036548
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
-                ],
-                "shininess": 100,
-                "specular": [
-                    0,
-                    0,
-                    0
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-<<<<<<< HEAD
-                "refractionRatio": 1,
-                "special": "NONE"
-            },
-            "comment": "//random[2.7030133928571396, -15.415736607142861, 34.65715692679903]",
-            "center": [
-                2.7030133928571396,
-                -15.415736607142861,
-                34.65715692679903
-            ],
-            "radius": 0.14676251903621906
-        },
-=======
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[0.08928571428571175, -6.696986607142857, 10.175678085240184]",
-            "center": [
-                0.08928571428571175,
-                -6.696986607142857,
-                10.175678085240184
-            ],
-            "radius": 0.04809010009185266
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0.35370349329768414,
-                    0.3828312139780625,
-                    0.06773706722893724
-                ],
-                "shininess": 1000,
-                "specular": [
-                    1,
-                    1,
-                    1
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-5.962611607142856, 0.7059151785714264, 5.354745266142456]",
-            "center": [
-                -5.962611607142856,
-                0.7059151785714264,
-                5.354745266142456
-            ],
-            "radius": 0.0864477350384154
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0.3898842073612623,
-                    0.7107494488030168,
-                    0.7984847615407249
-                ],
-                "shininess": 1000,
-                "specular": [
-                    1,
-                    1,
-                    1
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-1.1830357142857153, 0.5954241071428567, 9.13196888088866]",
-            "center": [
-                -1.1830357142857153,
-                0.5954241071428567,
-                9.13196888088866
-            ],
-            "radius": 0.1549845893267065
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0.423082379007897,
-                    0.497034529592676,
-                    0.594533423850042
-                ],
-                "shininess": 1000,
-                "specular": [
-                    1,
-                    1,
-                    1
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-8.331473214285715, -10.426060267857144, 11.827712706200991]",
-            "center": [
-                -8.331473214285715,
-                -10.426060267857144,
-                11.827712706200991
-            ],
-            "radius": 0.12486326895121674
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0.6220404798796502,
-                    0.07773959511994522,
-                    0.13564403169491868
-                ],
-                "shininess": 1000,
-                "specular": [
-                    1,
-                    1,
-                    1
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-0.1534598214285694, -0.11356026785714342, 11.284056950035666]",
-            "center": [
-                -0.1534598214285694,
-                -0.11356026785714342,
-                11.284056950035666
-            ],
-            "radius": 0.08481936685760338
-        },
-        {
-            "type": "sphere",
-            "material": {
-                "type": "PHONGMATERIAL",
-                "color": [
-                    0.5958969146517042,
-                    0.8044520880007693,
-                    0.4452377371679457
-                ],
-                "shininess": 1000,
-                "specular": [
-                    1,
-                    1,
-                    1
-                ],
-                "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1.31,
-                "special": "NONE"
-            },
-            "comment": "//random[-1.07421875, -10.490513392857142, 8.067576311980963]",
-            "center": [
-                -1.07421875,
-                -10.490513392857142,
-                8.067576311980963
-            ],
-            "radius": 0.012085709950048243
-        },
-        {
-            "type": "box",
+            "type": "plane",
             "material": {
                 "type": "PHONGMATERIAL",
                 "color": [
@@ -2018,70 +37,147 @@
                     0.75,
                     0.75
                 ],
-                "shininess": 70,
+                "shininess": 10,
                 "specular": [
-                    1,
-                    1,
-                    1
+                    0.2,
+                    0.2,
+                    0.2
                 ],
-                "reflectivity": 0.8,
-                "reflectType": "GLASSREFLECT",
+                "reflectivity": 1,
+                "reflectType": "NONEREFLECT",
                 "refractionRatio": 1.31,
-                "special": "NONE"
+                "special": "CHECKERBOARD"
             },
-            "comment": "//the box",
-            "minCorner": [
-                -10,
-                -10,
-                0
+            "comment": "//front wall",
+            "normal": [
+                0,
+                0,
+                -1
             ],
-            "maxCorner": [
-                5,
-                5,
-                15
-            ]
-        }
-    ],
-    "lights": [
->>>>>>> 6af6ad68ad23f284db700b3930c3551a6219b9c7
+            "dist": 100
+        },
         {
-            "type": "sphere",
+            "type": "plane",
             "material": {
                 "type": "PHONGMATERIAL",
                 "color": [
-                    0,
-                    0,
-                    0
+                    0.75,
+                    0.75,
+                    0.75
                 ],
-                "shininess": 100,
+                "shininess": 10,
                 "specular": [
-                    0,
-                    0,
-                    0
+                    0.2,
+                    0.2,
+                    0.2
                 ],
                 "reflectivity": 1,
-                "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
-                "special": "NONE"
+                "reflectType": "NONEREFLECT",
+                "refractionRatio": 1.31,
+                "special": "CHECKERBOARD"
             },
-            "comment": "//random[2.5814732142857135, -18.89620535714286, 22.60817779146125]",
-            "center": [
-                2.5814732142857135,
-                -18.89620535714286,
-                22.60817779146125
+            "comment": "//right wall",
+            "normal": [
+                1,
+                0,
+                0
             ],
-            "radius": 0.23695479434381383
+            "dist": 40
+        },
+        {
+            "type": "plane",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.75,
+                    0.75,
+                    0.75
+                ],
+                "shininess": 10,
+                "specular": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "reflectivity": 1,
+                "reflectType": "NONEREFLECT",
+                "refractionRatio": 1.31,
+                "special": "CHECKERBOARD"
+            },
+            "comment": "//left wall",
+            "normal": [
+                -1,
+                0,
+                0
+            ],
+            "dist": 40
+        },
+        {
+            "type": "plane",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.75,
+                    0.75,
+                    0.75
+                ],
+                "shininess": 10,
+                "specular": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "reflectivity": 1,
+                "reflectType": "NONEREFLECT",
+                "refractionRatio": 1.31,
+                "special": "CHECKERBOARD"
+            },
+            "comment": "//top wall",
+            "normal": [
+                0,
+                1,
+                0
+            ],
+            "dist": 62
+        },
+        {
+            "type": "plane",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.75,
+                    0.75,
+                    0.75
+                ],
+                "shininess": 10,
+                "specular": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "reflectivity": 1,
+                "reflectType": "NONEREFLECT",
+                "refractionRatio": 1.31,
+                "special": "CHECKERBOARD"
+            },
+            "comment": "//bottom wall",
+            "normal": [
+                0,
+                -1,
+                0
+            ],
+            "dist": 18
         },
         {
             "type": "sphere",
             "material": {
                 "type": "PHONGMATERIAL",
                 "color": [
-                    0,
-                    0,
-                    0
+                    0.2,
+                    0.2,
+                    0.2
                 ],
-                "shininess": 100,
+                "shininess": 1,
                 "specular": [
                     0,
                     0,
@@ -2089,16 +185,2103 @@
                 ],
                 "reflectivity": 1,
                 "reflectType": "GLASSREFLECT",
-                "refractionRatio": 1,
+                "refractionRatio": 0.9,
                 "special": "NONE"
             },
-            "comment": "//random[1.0125000000000002, -19.271875, 25.005892466265546]",
+            "comment": "//random[-9.596428571428573, -18.798214285714288, 27.897126289903134]",
             "center": [
-                1.0125000000000002,
-                -19.271875,
-                25.005892466265546
+                -9.596428571428573,
+                -18.798214285714288,
+                27.897126289903134
             ],
-            "radius": 0.25581829026342195
+            "radius": 0.20413392176165326
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-7.025, -0.8303571428571441, 28.640237038719498]",
+            "center": [
+                -7.025,
+                -0.8303571428571441,
+                28.640237038719498
+            ],
+            "radius": 0.20395528802272508
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-6.864285714285717, -2.9678571428571443, 14.6275105830645, 481.4477226057562]",
+            "center": [
+                -6.864285714285717,
+                -2.9678571428571443,
+                14.6275105830645,
+                481.4477226057562
+            ],
+            "radius": 0.041942469301280205
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-8.551785714285717, -9.492857142857144, 30.51140229347581]",
+            "center": [
+                -8.551785714285717,
+                -9.492857142857144,
+                30.51140229347581
+            ],
+            "radius": 0.009885377771801615
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[0.7696428571428555, -4.285714285714288, 27.934006728089518, 295.2806571719741]",
+            "center": [
+                0.7696428571428555,
+                -4.285714285714288,
+                27.934006728089518,
+                295.2806571719741
+            ],
+            "radius": 0.02425279023668699
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-2.75, -15.503571428571428, 9.030055411414011]",
+            "center": [
+                -2.75,
+                -15.503571428571428,
+                9.030055411414011
+            ],
+            "radius": 0.007615227715608297
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.601785714285711, -12.980357142857144, 18.576601135289394, 443.8343517822976]",
+            "center": [
+                2.601785714285711,
+                -12.980357142857144,
+                18.576601135289394,
+                443.8343517822976
+            ],
+            "radius": 0.12752324275856386
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-9.017857142857144, -3.080357142857144, 22.619180958814276]",
+            "center": [
+                -9.017857142857144,
+                -3.080357142857144,
+                22.619180958814276
+            ],
+            "radius": 0.05991757790700384
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.1196428571428556, -11.260714285714283, 21.33348059699731]",
+            "center": [
+                2.1196428571428556,
+                -11.260714285714283,
+                21.33348059699731
+            ],
+            "radius": 0.2977319867767147
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-4.469642857142856, -15.423214285714284, 21.053615673111793]",
+            "center": [
+                -4.469642857142856,
+                -15.423214285714284,
+                21.053615673111793
+            ],
+            "radius": 0.32157617925662957
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[3.983928571428567, -12.723214285714285, 23.08792561425704]",
+            "center": [
+                3.983928571428567,
+                -12.723214285714285,
+                23.08792561425704
+            ],
+            "radius": 0.24476106674349485
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[5.928571428571423, -3.2410714285714333, 5.708542453304949]",
+            "center": [
+                5.928571428571423,
+                -3.2410714285714333,
+                5.708542453304949
+            ],
+            "radius": 0.2848989919711384
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-5.5625, -12.626785714285717, 14.99970203400792]",
+            "center": [
+                -5.5625,
+                -12.626785714285717,
+                14.99970203400792
+            ],
+            "radius": 0.2035090208120122
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.810714285714289, -1.4571428571428555, 23.45614480074824]",
+            "center": [
+                2.810714285714289,
+                -1.4571428571428555,
+                23.45614480074824
+            ],
+            "radius": 0.15600711593867903
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-7.764285714285712, -2.2124999999999995, 17.64251250571461]",
+            "center": [
+                -7.764285714285712,
+                -2.2124999999999995,
+                17.64251250571461
+            ],
+            "radius": 0.33318436873814283
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[1.1875, -10.65, 28.009866527693234]",
+            "center": [
+                1.1875,
+                -10.65,
+                28.009866527693234
+            ],
+            "radius": 0.12585918696955004
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[4.160714285714289, -11.132142857142856, 6.79067152902206]",
+            "center": [
+                4.160714285714289,
+                -11.132142857142856,
+                6.79067152902206
+            ],
+            "radius": 0.014890823517353269
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.2, -11.019642857142856, 24.754743355302836, 322.7332914586169]",
+            "center": [
+                2.2,
+                -11.019642857142856,
+                24.754743355302836,
+                322.7332914586169
+            ],
+            "radius": 0.06428107090466799
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-10.030357142857145, -15.551785714285712, 28.89524870997143]",
+            "center": [
+                -10.030357142857145,
+                -15.551785714285712,
+                28.89524870997143
+            ],
+            "radius": 0.24257183401664717
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[0.7375, -10.9875, 6.102173266970398]",
+            "center": [
+                0.7375,
+                -10.9875,
+                6.102173266970398
+            ],
+            "radius": 0.011713801428923679
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.6660714285714335, -12.883928571428573, 24.61726677863964]",
+            "center": [
+                2.6660714285714335,
+                -12.883928571428573,
+                24.61726677863964
+            ],
+            "radius": 0.0017528013121768475
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[3.7750000000000004, -0.7017857142857107, 29.453026138849125]",
+            "center": [
+                3.7750000000000004,
+                -0.7017857142857107,
+                29.453026138849125
+            ],
+            "radius": 0.17879398575064995
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-2.975, -13.092857142857145, 8.32148427068537]",
+            "center": [
+                -2.975,
+                -13.092857142857145,
+                8.32148427068537
+            ],
+            "radius": 0.3144152316838116
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[3.051785714285711, -12.417857142857144, 21.09314937431266]",
+            "center": [
+                3.051785714285711,
+                -12.417857142857144,
+                21.09314937431266
+            ],
+            "radius": 0.33038118171306985
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[4.482142857142856, -4.719642857142855, 29.17817222012601, 361.4495835624433]",
+            "center": [
+                4.482142857142856,
+                -4.719642857142855,
+                29.17817222012601,
+                361.4495835624433
+            ],
+            "radius": 0.21750842009637913
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-9.033928571428573, -1.6339285714285774, 17.843860135128157, 256.850660967008]",
+            "center": [
+                -9.033928571428573,
+                -1.6339285714285774,
+                17.843860135128157,
+                256.850660967008
+            ],
+            "radius": 0.012341860927606954
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[3.646428571428567, -3.353571428571433, 10.220931231525899]",
+            "center": [
+                3.646428571428567,
+                -3.353571428571433,
+                10.220931231525899
+            ],
+            "radius": 0.10336400015760239
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.0553571428571447, -2.357142857142855, 21.553095877522985]",
+            "center": [
+                2.0553571428571447,
+                -2.357142857142855,
+                21.553095877522985
+            ],
+            "radius": 0.011628661312173327
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.2, -11.019642857142856, 24.754743355302836, 322.7332914586169]",
+            "center": [
+                2.2,
+                -11.019642857142856,
+                24.754743355302836,
+                322.7332914586169
+            ],
+            "radius": 0.09909068631509999
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.6821428571428556, -0.09107142857143291, 16.640856015408783]",
+            "center": [
+                2.6821428571428556,
+                -0.09107142857143291,
+                16.640856015408783
+            ],
+            "radius": 0.2729951677292455
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-1.673214285714289, -16.51607142857143, 6.483129945541126]",
+            "center": [
+                -1.673214285714289,
+                -16.51607142857143,
+                6.483129945541126
+            ],
+            "radius": 0.02655362181956929
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.3125, -6.9375, 12.720689905507166]",
+            "center": [
+                2.3125,
+                -6.9375,
+                12.720689905507166
+            ],
+            "radius": 0.15468754306262755
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[3.083928571428567, -12.385714285714283, 19.75998091809972]",
+            "center": [
+                3.083928571428567,
+                -12.385714285714283,
+                19.75998091809972
+            ],
+            "radius": 0.29014555655539614
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-7.6678571428571445, -16.323214285714286, 8.780652658428963]",
+            "center": [
+                -7.6678571428571445,
+                -16.323214285714286,
+                8.780652658428963
+            ],
+            "radius": 0.04589583100798341
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-8.375, -17.576785714285712, 18.657109222914695]",
+            "center": [
+                -8.375,
+                -17.576785714285712,
+                18.657109222914695
+            ],
+            "radius": 0.16633729605436862
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.601785714285711, -12.980357142857144, 18.576601135289394, 443.8343517822976]",
+            "center": [
+                2.601785714285711,
+                -12.980357142857144,
+                18.576601135289394,
+                443.8343517822976
+            ],
+            "radius": 0.06779087983790832
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-9.741071428571429, -9.910714285714288, 13.676775050096076]",
+            "center": [
+                -9.741071428571429,
+                -9.910714285714288,
+                13.676775050096076
+            ],
+            "radius": 0.07546546951059434
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-7.5875, -1.0714285714285774, 8.638143874697722]",
+            "center": [
+                -7.5875,
+                -1.0714285714285774,
+                8.638143874697722
+            ],
+            "radius": 0.23616079616049038
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[3.148214285714289, -16.40357142857143, 25.893202175715174]",
+            "center": [
+                3.148214285714289,
+                -16.40357142857143,
+                25.893202175715174
+            ],
+            "radius": 0.28839540013617737
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[4.916071428571422, -16.596428571428575, 9.980002030347055]",
+            "center": [
+                4.916071428571422,
+                -16.596428571428575,
+                9.980002030347055
+            ],
+            "radius": 0.09413106482879814
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[5.366071428571423, -1.794642857142855, 10.402201258895218]",
+            "center": [
+                5.366071428571423,
+                -1.794642857142855,
+                10.402201258895218
+            ],
+            "radius": 0.023473358249054166
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-6.430357142857145, -12.3375, 12.290796537885221]",
+            "center": [
+                -6.430357142857145,
+                -12.3375,
+                12.290796537885221
+            ],
+            "radius": 0.09325227208422904
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.858928571428567, -4.205357142857144, 27.950073779322672]",
+            "center": [
+                2.858928571428567,
+                -4.205357142857144,
+                27.950073779322672
+            ],
+            "radius": 0.2779877036085028
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-9.467857142857145, -4.173214285714289, 28.350954692781634]",
+            "center": [
+                -9.467857142857145,
+                -4.173214285714289,
+                28.350954692781634
+            ],
+            "radius": 0.14975162016816876
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-6.864285714285717, -2.9678571428571443, 14.6275105830645, 481.4477226057562]",
+            "center": [
+                -6.864285714285717,
+                -2.9678571428571443,
+                14.6275105830645,
+                481.4477226057562
+            ],
+            "radius": 0.18176392697957122
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[6.008928571428567, -0.7017857142857107, 20.922879843025772]",
+            "center": [
+                6.008928571428567,
+                -0.7017857142857107,
+                20.922879843025772
+            ],
+            "radius": 0.15844753786152196
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-5.9, -5.8125, 14.890715403029489]",
+            "center": [
+                -5.9,
+                -5.8125,
+                14.890715403029489
+            ],
+            "radius": 0.2879567419149823
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[3.951785714285711, -17.560714285714283, 9.41427054301303]",
+            "center": [
+                3.951785714285711,
+                -17.560714285714283,
+                9.41427054301303
+            ],
+            "radius": 0.2064289895759633
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[4.1125, -11.083928571428572, 23.775179091930095]",
+            "center": [
+                4.1125,
+                -11.083928571428572,
+                23.775179091930095
+            ],
+            "radius": 0.10416733090779817
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[5.976785714285711, -17.560714285714283, 11.97632485513795]",
+            "center": [
+                5.976785714285711,
+                -17.560714285714283,
+                11.97632485513795
+            ],
+            "radius": 0.09396710255655556
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.7303571428571445, -12.723214285714285, 12.373945130752578]",
+            "center": [
+                2.7303571428571445,
+                -12.723214285714285,
+                12.373945130752578
+            ],
+            "radius": 0.2412582634429193
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[4.433928571428567, -18.81428571428571, 11.6905093699407, 459.02332673597164]",
+            "center": [
+                4.433928571428567,
+                -18.81428571428571,
+                11.6905093699407,
+                459.02332673597164
+            ],
+            "radius": 0.2025911476108939
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-7.6678571428571445, -6.294642857142856, 17.277641237748455]",
+            "center": [
+                -7.6678571428571445,
+                -6.294642857142856,
+                17.277641237748455
+            ],
+            "radius": 0.15234430544700298
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[4.964285714285712, -11.517857142857146, 23.0375072649004]",
+            "center": [
+                4.964285714285712,
+                -11.517857142857146,
+                23.0375072649004
+            ],
+            "radius": 0.2776276911145516
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-6.9125000000000005, -17.833928571428572, 23.593295175283288]",
+            "center": [
+                -6.9125000000000005,
+                -17.833928571428572,
+                23.593295175283288
+            ],
+            "radius": 0.20717372262696176
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-7.6357142857142835, -13.526785714285712, 7.733871124903918]",
+            "center": [
+                -7.6357142857142835,
+                -13.526785714285712,
+                7.733871124903918
+            ],
+            "radius": 0.000717521617680165
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[3.083928571428567, -16.40357142857143, 23.859099223143925, 434.2904346379885]",
+            "center": [
+                3.083928571428567,
+                -16.40357142857143,
+                23.859099223143925,
+                434.2904346379885
+            ],
+            "radius": 0.31141383743049944
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[1.75, -9.975, 28.339226492190036]",
+            "center": [
+                1.75,
+                -9.975,
+                28.339226492190036
+            ],
+            "radius": 0.2575111743451774
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[4.466071428571422, -15.0375, 13.788762632349709]",
+            "center": [
+                4.466071428571422,
+                -15.0375,
+                13.788762632349709
+            ],
+            "radius": 0.22597694650946984
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[6.330357142857145, -17.0625, 23.94594927356615]",
+            "center": [
+                6.330357142857145,
+                -17.0625,
+                23.94594927356615
+            ],
+            "radius": 0.14525666029121043
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.0553571428571447, -5.169642857142856, 6.129436294793675]",
+            "center": [
+                2.0553571428571447,
+                -5.169642857142856,
+                6.129436294793675
+            ],
+            "radius": 0.21401194525676956
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-2.8785714285714334, -13.076785714285716, 9.640152390343145]",
+            "center": [
+                -2.8785714285714334,
+                -13.076785714285716,
+                9.640152390343145
+            ],
+            "radius": 0.2626282887824557
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[6.089285714285712, -6.053571428571433, 20.121645928715118, 460.6211771523236]",
+            "center": [
+                6.089285714285712,
+                -6.053571428571433,
+                20.121645928715118,
+                460.6211771523236
+            ],
+            "radius": 0.2950214055251024
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[6.555357142857145, -8.303571428571434, 16.24077242363974]",
+            "center": [
+                6.555357142857145,
+                -8.303571428571434,
+                16.24077242363974
+            ],
+            "radius": 0.16134202273733986
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[3.903571428571434, -11.646428571428572, 27.237350738513832]",
+            "center": [
+                3.903571428571434,
+                -11.646428571428572,
+                27.237350738513832
+            ],
+            "radius": 0.32818788624064554
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[1.7339285714285666, -13.671428571428573, 28.72419541996897]",
+            "center": [
+                1.7339285714285666,
+                -13.671428571428573,
+                28.72419541996897
+            ],
+            "radius": 0.07827202295469489
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-8.085714285714284, -5.1375, 13.576264073096876]",
+            "center": [
+                -8.085714285714284,
+                -5.1375,
+                13.576264073096876
+            ],
+            "radius": 0.1632833678205435
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[4.128571428571422, 0.4392857142857114, 22.569067905756413]",
+            "center": [
+                4.128571428571422,
+                0.4392857142857114,
+                22.569067905756413
+            ],
+            "radius": 0.2123129147612449
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[3.983928571428567, -13.30178571428571, 27.395374826115155]",
+            "center": [
+                3.983928571428567,
+                -13.30178571428571,
+                27.395374826115155
+            ],
+            "radius": 0.2960658128082022
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[4.916071428571422, -18.717857142857145, 25.088912630032862]",
+            "center": [
+                4.916071428571422,
+                -18.717857142857145,
+                25.088912630032862
+            ],
+            "radius": 0.31797990775341545
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-2.2196428571428557, -1.9553571428571441, 15.393108868944953]",
+            "center": [
+                -2.2196428571428557,
+                -1.9553571428571441,
+                15.393108868944953
+            ],
+            "radius": 0.04105543570179663
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[2.2, -8.85, 12.139117003260901]",
+            "center": [
+                2.2,
+                -8.85,
+                12.139117003260901
+            ],
+            "radius": 0.2134126670576306
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[4.530357142857144, -2.598214285714289, 10.553534205412909, 258.420649635128]",
+            "center": [
+                4.530357142857144,
+                -2.598214285714289,
+                10.553534205412909,
+                258.420649635128
+            ],
+            "radius": 0.27619868684441246
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[4.482142857142856, -4.719642857142855, 29.17817222012601, 361.4495835624433]",
+            "center": [
+                4.482142857142856,
+                -4.719642857142855,
+                29.17817222012601,
+                361.4495835624433
+            ],
+            "radius": 0.19932129016451772
+        },
+        {
+            "type": "sphere",
+            "material": {
+                "type": "PHONGMATERIAL",
+                "color": [
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                "shininess": 1,
+                "specular": [
+                    0,
+                    0,
+                    0
+                ],
+                "reflectivity": 1,
+                "reflectType": "GLASSREFLECT",
+                "refractionRatio": 0.9,
+                "special": "NONE"
+            },
+            "comment": "//random[-3.0875000000000004, -11.8875, 19.31319211763291, 504.5111036136834]",
+            "center": [
+                -3.0875000000000004,
+                -11.8875,
+                19.31319211763291,
+                504.5111036136834
+            ],
+            "radius": 0.02509490302531499
         },
         {
             "type": "mesh",
@@ -2116,7 +2299,7 @@
                     0.3
                 ],
                 "reflectivity": 0.9,
-                "reflectType": "GLASSREFLECT",
+                "reflectType": "ICE",
                 "refractionRatio": 1.309,
                 "special": "NONE"
             },
@@ -2125,53 +2308,81 @@
             "scale": 12,
             "offset": [
                 -8,
-                -25,
-                30
+                -13,
+                10
             ]
         }
     ],
     "lights": [
         {
             "pos": [
-                -30,
-                20,
-                60
+                8,
+                -10,
+                50
             ],
             "color": [
-                1,
-                1,
-                1
+                0.9411764705882353,
+                0.9019607843137255,
+                0.5490196078431373
             ],
-            "intensity": 40,
-            "attenuate": 5
+            "intensity": 20,
+            "attenuate": 1.1
         },
         {
             "pos": [
-                30,
-                20,
-                60
+                -15,
+                -10,
+                5
             ],
             "color": [
-                1,
-                1,
-                1
+                0.9411764705882353,
+                0.9019607843137255,
+                0.5490196078431373
             ],
-            "intensity": 40,
-            "attenuate": 5
+            "intensity": 20,
+            "attenuate": 1.1
+        },
+        {
+            "pos": [
+                0,
+                50,
+                0
+            ],
+            "color": [
+                0.9411764705882353,
+                0.9019607843137255,
+                0.5490196078431373
+            ],
+            "intensity": 30,
+            "attenuate": 1.1
         },
         {
             "pos": [
                 0,
                 0,
-                -10
+                -50
             ],
             "color": [
-                1,
-                1,
-                1
+                0.9411764705882353,
+                0.9019607843137255,
+                0.5490196078431373
             ],
-            "intensity": 40,
-            "attenuate": 1.5
+            "intensity": 50,
+            "attenuate": 1.1
+        },
+        {
+            "pos": [
+                -8,
+                -13,
+                10
+            ],
+            "color": [
+                0.9411764705882353,
+                0.9019607843137255,
+                0.5490196078431373
+            ],
+            "intensity": 10,
+            "attenuate": 1
         }
     ]
 }
