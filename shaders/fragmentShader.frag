@@ -635,7 +635,7 @@ vec3 calculateColor(Material mat, vec3 posIntersection, vec3 normalVector,
   float diffuseIntensity =
         max(0.0, dot(normalVector, nectCoord - posIntersection)) * intensity;
 
-  outputColor += diffuseColor * diffuseIntensity * nextColor * 0.3;
+  outputColor += diffuseColor * diffuseIntensity * nextColor * 0.12;
 
   outputColor += mat.specular * nextColor * intensity  ;
 
