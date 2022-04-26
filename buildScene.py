@@ -46,22 +46,22 @@ if __name__ == "__main__":
             bubble_list.append(center)
     recentered_bubble_list = []
     random.shuffle(bubble_list)
-    for i in range(75):
+    for i in range(100):
         vertex = bubble_list[i]
         vertex[0] = (vertex[0]/512*18 - 10) * 3.2 
         vertex[1] = (vertex[1]/512*18 - 10) * 3.2 - 7
         vertex[2] = (vertex[2]/512*18 - 10) * 2.8 + 9
 
         recentered_bubble_list.append(vertex)
-    # print(recentered_bubble_list)
+    print(recentered_bubble_list)
 
-    # for center in recentered_bubble_list:
-    #     s = Sphere(comment="random"+str(center),
-    #                center=center,
-    #                radius=random.uniform(0, 1)/3,
-    #                material=Material(color = [0.2,0.2,0.2],specular=[0,0,0], shininess=1, reflectivity=1, reflectType=reflectType.GLASSREFLECT, refractionRatio=0.9)
-    #                )
-    #     objects.append(s)
+    for center in recentered_bubble_list:
+        s = Sphere(comment="random"+str(center),
+                   center=center,
+                   radius=random.uniform(0, 1)/2,
+                   material=Material(color = [0.2,0.2,0.2],specular=[0,0,0], shininess=1, reflectivity=1, reflectType=reflectType.GLASSREFLECT, refractionRatio=0.9)
+                   )
+        objects.append(s)
     
     #cylinder
     # cy = Cylinder(comment="the cylinder", bottomCenter=[15.0, -30.0, 20.0], topCenter=[15.0, -6.0, 20.0], radius = 7,
