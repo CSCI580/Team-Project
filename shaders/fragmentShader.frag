@@ -7,7 +7,7 @@ precision mediump float;
 precision mediump int;
 
 // flag for using soft shadows (set to 1 only when using soft shadows)
-#define SOFT_SHADOWS 0
+#define SOFT_SHADOWS 1
 
 // define number of soft shadow samples to take
 #define SOFT_SAMPLING 10

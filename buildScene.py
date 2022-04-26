@@ -46,7 +46,7 @@ if __name__ == "__main__":
             bubble_list.append(center)
     recentered_bubble_list = []
     random.shuffle(bubble_list)
-    for i in range(100):
+    for i in range(20):
         vertex = bubble_list[i]
         vertex[0] = (vertex[0]/512*18 - 10) * 3.2 
         vertex[1] = (vertex[1]/512*18 - 10) * 3.2 - 7
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     for center in recentered_bubble_list:
         s = Sphere(comment="random"+str(center),
                    center=center,
-                   radius=random.uniform(0, 1)/2,
+                   radius=random.uniform(0, 1)/15+ 4/15,
                    material=Material(color = [0.2,0.2,0.2],specular=[0,0,0], shininess=1, reflectivity=1, reflectType=reflectType.GLASSREFLECT, refractionRatio=0.9)
                    )
         objects.append(s)
@@ -90,15 +90,15 @@ if __name__ == "__main__":
     lights = []
 
     #right corner
-    l1 = Light(pos = [8, -10, 50], color=[240/255,230/255,140/255], intensity=20, attenuate=1.1)
+    l1 = Light(pos = [8, -10, 50], color=[240/255,230/255,140/255], intensity=30, attenuate=1.1)
     lights.append(l1)
 
     #left corner
-    l1 = Light(pos = [-15, -10, 5], color=[240/255,230/255,140/255], intensity=20, attenuate=1.1)
+    l1 = Light(pos = [-15, -10, 5], color=[240/255,230/255,140/255], intensity=30, attenuate=1.1)
     lights.append(l1)
 
     #high
-    l3 = Light(pos = [0, 50, 0], color=[240/255,230/255,140/255], intensity=30, attenuate=1.1)
+    l3 = Light(pos = [0, 50, 0], color=[240/255,230/255,140/255], intensity=40, attenuate=1.1)
     lights.append(l3)
 
     #camera light
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     lights.append(l4)
 
     #inner
-    li = Light(pos = [-8, -13, 10], color=[240/255,230/255,140/255], intensity=10, attenuate=1)
+    li = Light(pos = [-8, -13, 10], color=[240/255,230/255,140/255], intensity=20, attenuate=1)
     lights.append(li)
 
 

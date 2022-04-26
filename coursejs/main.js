@@ -3,8 +3,8 @@ window.onload = function() {
 
   // var height = cmd.height || window.innerHeight;
   // var width = cmd.width || window.innerWidth;
-  var width =512;
-  var height = 320;
+  var width =1280;
+  var height = 800;
 
   var animated = cmd.animated || 0;
   var paused = false;
