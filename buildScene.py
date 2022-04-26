@@ -1,4 +1,3 @@
-from cgitb import text
 import os
 import json
 import random

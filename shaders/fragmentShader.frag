@@ -7,7 +7,7 @@ precision mediump float;
 precision mediump int;
 
 // flag for using soft shadows (set to 1 only when using soft shadows)
-#define SOFT_SHADOWS 1
+#define SOFT_SHADOWS 0
 
 // define number of soft shadow samples to take
 #define SOFT_SAMPLING 10
@@ -599,7 +599,7 @@ float softShadowRatio(vec3 pos, vec3 lightVec) {
 
       // apply sample offset to lightVec, check whether if the point is in shadow given the new light vec
       bool in_shadow = pointInShadow(pos, lightVec + sample);
-      not_in_shadow += in_shadow ? 0.0 : 1.0;
+      not_in_shadow += in_shadow ? 0.1 : 1.0;
     }
   }
   return not_in_shadow/float(SOFT_SAMPLING);
@@ -669,8 +669,7 @@ vec3 calcReflectionVector(Material material, vec3 direction, vec3 normalVector,
     float cos_theta_i = dot(direction, normalVector)/(length(direction) * length(normalVector));
     float theta_i = acos(cos_theta_i);
     if ((eta * sin(theta_i)) > 1.0) {
-        vec3 ref_light = reflect(direction, normalVector);
-        vec3 random_vec = normalize(vec3(random(direction.xy + v_position), random(direction.yz + v_position), random(direction.zx + v_position)));
+        Vec3(random(direction.xy + v_position), random(direction.yz + v_position), random(direction.zx + v_position)));
         // use normal vector as a radius, sum a random vector and the normal vector to compute the final random vector. 
         random_vec = normalize(random_vec + normalVector);
         return normalize(ref_light+random_vec*0.1);
@@ -722,11 +721,17 @@ vec3 calculateColor(Material mat, vec3 posIntersection, vec3 normalVector,
     outputColor += contribution;
   }
 
+ 
 
   vec3 R = normalize(-reflect(nectCoord - posIntersection, normalVector));
   
   float intensity = pow(max(0.0, dot(eyeVector, R)), mat.shininess);
-    
+  
+  float diffuseIntensity =
+        max(0.0, dot(normalVector, nectCoord - posIntersection)) * intensity;
+
+  outputColor += diffuseColor * diffuseIntensity * nextColor;
+
   outputColor += mat.specular * nextColor * intensity * 2.0 ;
 
   return outputColor;
