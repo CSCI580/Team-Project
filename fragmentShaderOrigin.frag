@@ -845,21 +845,95 @@ vec3 getLightContribution(Light light, Material mat, vec3 posIntersection,
   }
 }
 
+
+vec3 traceRay2(Ray ray) {
+
+  vec3 resColor = vec3(0.0, 0.0, 0.0);
+  vec3 c =  vec3(1.0, 1.0, 1.0);
+
+  vec3 resWeight = vec3(1.0, 1.0, 1.0);
+
+  bool isInsideObj = false;
+
+  for (int depth = 0; depth < MAX_RECURSION; depth++) {
+   
+    Material hitMaterial;
+    Intersection intersect;
+
+    float len = rayIntersectScene(ray, hitMaterial, intersect);
+    if (abs(len) <= EPS || len >= INFINITY) break; 
+
+    vec3 posIntersection = intersect.position;
+    vec3 normalVector    = intersect.normal;
+
+    vec3 eyeVector = normalize(ray.origin - posIntersection);
+
+    if (dot(eyeVector, normalVector) < 0.0) {
+        normalVector = -normalVector;
+        isInsideObj = true;
+    } else {
+        isInsideObj = false;
+    }
+
+    bool reflective = (hitMaterial.materialReflectType == MIRRORREFLECT ||
+                       hitMaterial.materialReflectType == GLASSREFLECT || 
+                       hitMaterial.materialReflectType == ICE ||
+                       hitMaterial.materialReflectType == FRESNEL_BLEND_REFLECTION);
+
+    vec3 outputColor = calculateColor(hitMaterial, posIntersection,
+      normalVector, eyeVector, reflective);
+
+    if (!reflective) {
+
+      outputColor = outputColor * resWeight;
+      resColor += outputColor;
+      break;
+    }
+
+    if (reflective) {
+     
+      ray.origin = rayGetOffset(ray, len);
+
+      if(hitMaterial.materialReflectType == FRESNEL_BLEND_REFLECTION){
+          mat3 ortho = orthonormal(normalVector);
+          vec3 wo = inverse(ortho) * (-ray.direction);
+          vec3 wi = randomWiFresnelBlend(wo);
+          float p = randomFresnelBlendReflectionPdf(wo, wi);
+          if (p < 0.0) return vec3(0.0);
+          vec3 dir = ortho * wi;
+          vec3 rd = vec3(30.0/255.0, 30.0/255.0, 240.0/255.0);
+          vec3 rs =vec3(60.0/255.0, 60.0/255.0, 60.0/255.0);
+          vec3 brdf = fresnelBlendReflectionBRDF(wo, wi, rd, rs);
+          
+          ray.direction = normalize(dir);
+
+          c *= brdf * dot(normalVector, dir) / p;
+          outputColor = outputColor * resWeight  * c * max(0.0,dot(normalVector,wi));
+          resColor += outputColor;
+
+          resWeight *= hitMaterial.reflectivity;
+      }
+      else{
+
+          vec3 nextDir = calcReflectionVector(hitMaterial, ray.direction, normalVector, isInsideObj);
+          ray.direction = normalize(nextDir);
+
+          outputColor = outputColor * resWeight;
+          resColor += outputColor;
+
+          resWeight *= hitMaterial.reflectivity;
+        }
+      }
+  }
+
+  return resColor;
+}
+
+
 vec3 calculateColor(Material mat, vec3 posIntersection, vec3 normalVector,
                     vec3 eyeVector, bool phongOnly) {
-  // The diffuse color of the material at the point of intersection
-  // Needed to compute the color when accounting for the lights in the scene
   vec3 diffuseColor = calculateDiffuseColor(mat, posIntersection, normalVector);
-
-  // color defaults to black when there are no lights
   vec3 outputColor = vec3(0.0, 0.0, 0.0);
-
-  // Loop over the MAX_LIGHTS different lights, taking care not to exceed
-  // numLights (GLSL restriction), and accumulate each light's contribution
-  // to the point of intersection in the scene.
-  // ----------- STUDENT CODE BEGIN ------------
-  // ----------- Our reference solution uses 9 lines of code.
-  // Return diffuseColor by default, so you can see something for now.
   for (int i = 0; i < MAX_LIGHTS; i++) {
     if (i >= numLights) break;
     vec3 contribution = getLightContribution(lights[i], mat, posIntersection, normalVector, eyeVector, phongOnly, diffuseColor);
@@ -958,7 +1032,9 @@ vec3 traceRay(Ray ray) {
 
     // Material is reflective if it is either mirror or glass in this assignment
     bool reflective = (hitMaterial.materialReflectType == MIRRORREFLECT ||
-                       hitMaterial.materialReflectType == GLASSREFLECT || hitMaterial.materialReflectType == FRESNEL_BLEND_REFLECTION);
+                       hitMaterial.materialReflectType == GLASSREFLECT || 
+                       hitMaterial.materialReflectType == ICE ||
+                       hitMaterial.materialReflectType == FRESNEL_BLEND_REFLECTION);
 
     // Compute the color at the intersection point based on its material
     // and the lighting in the scene

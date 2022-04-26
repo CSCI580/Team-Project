@@ -3,8 +3,8 @@ window.onload = function() {
 
   // var height = cmd.height || window.innerHeight;
   // var width = cmd.width || window.innerWidth;
-  var width = 640;
-  var height = 400;
+  var width =512;
+  var height = 320;
 
   var animated = cmd.animated || 0;
   var paused = false;
@@ -23,6 +23,16 @@ window.onload = function() {
   };
 
   drawScene();
+
+  // var intervalId = window.setInterval(function(){
+  //   // snapShot();
+  //   Raytracer.setUniform("1f", "u_random", Math.random()*1E6);
+  //   Raytracer.needsToDraw = true;
+
+  // }, 50);
+
+ 
+
 
   function snapShot() {
     // get the image data

@@ -20,7 +20,7 @@ precision mediump int;
 #define M_PI 3.1415926535897932384626433832795
 
 // define maximum recursion depth for rays
-#define MAX_RECURSION 8
+#define MAX_RECURSION 10
 
 // define constants for scene setting
 #define MAX_LIGHTS 10
@@ -102,9 +102,7 @@ vec3 rayGetOffset(Ray ray, float dist) {
   return ray.origin + (dist * ray.direction);
 }
 
-// if a newly found intersection is closer than the best found so far, record
-// the new intersection and return true; otherwise leave the best as it was and
-// return false.
+
 bool chooseCloserIntersection(float dist, inout float best_dist,
                               inout Intersection intersect,
                               inout Intersection best_intersect) {
@@ -116,9 +114,6 @@ bool chooseCloserIntersection(float dist, inout float best_dist,
   return true;
 }
 
-// put any general convenience functions you want up here
-// ----------- STUDENT CODE BEGIN ------------
-// ----------- Our reference solution uses 118 lines of code.
 
 // Calculates surface normal of a triangle
 vec3 findSurfaceNormal(vec3 t1, vec3 t2, vec3 t3) {
@@ -135,10 +130,8 @@ bool checkOneSide(vec3 v, vec3 P, vec3 t1, vec3 t2) {
   vec3 v1 = t1 - P;
   vec3 v2 = t2 - P;
   vec3 n1 = cross(v2, v1);
-  if (dot(v, n1) < EPS) {
-    return false;
-  }
-  return true;
+
+  return dot(v, n1) > EPS;
 }
 
 bool checkInBox(vec3 intersect, vec3 corner, vec3 size) {
@@ -151,49 +144,24 @@ bool checkInBox(vec3 intersect, vec3 corner, vec3 size) {
   return inside;
 }
 
-// https://stackoverflow.com/questions/4200224/random-noise-functions-for-glsl
-highp float rand(vec2 co)
-{
-    highp float a = 12.9898;
-    highp float b = 78.233;
-    highp float c = 43758.5453;
-    highp float dt= dot(co.xy ,vec2(a,b));
-    highp float sn= mod(dt,3.14);
-    return fract(sin(sn) * c);
-}
-
-// https://www.shadertoy.com/view/Xsl3Dl
-// vec2 hash( vec2 p ) // replace this by something better
-// {
-// 	p = vec2( dot(p,vec2(127.1,311.7)), dot(p,vec2(269.5,183.3)) );
-// 	return -1.0 + 2.0*fract(sin(p)*43758.5453123);
-// }
-
-// float noise( in vec2 p )
-// {
-//     const float K1 = 0.366025404; // (sqrt(3)-1)/2;
-//     const float K2 = 0.211324865; // (3-sqrt(3))/6;
-
-// 	vec2  i = floor( p + (p.x+p.y)*K1 );
-//     vec2  a = p - i + (i.x+i.y)*K2;
-//     float m = step(a.y,a.x); 
-//     vec2  o = vec2(m,1.0-m);
-//     vec2  b = a - o + K2;
-// 	vec2  c = a - 1.0 + 2.0*K2;
-//     vec3  h = max( 0.5-vec3(dot(a,a), dot(b,b), dot(c,c) ), 0.0 );
-// 	vec3  n = h*h*h*h*vec3( dot(a,hash(i+0.0)), dot(b,hash(i+o)), dot(c,hash(i+1.0)));
-//     return dot( n, vec3(70.0) );
-// }
 
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 uniform float u_time;
+uniform float u_random;
 
-float random (in vec2 st) {
-    return fract(sin(dot(st.xy,
-                         vec2(12.9898,78.233)))*
-        43758.5453123);
-}
+#if 0
+  float random (in vec2 st) {
+      return fract(sin(dot(st.xy,
+  vec2(12.9898,78.233)))*u_random);
+  }
+#else
+  float random (in vec2 st) {
+      return fract(sin(dot(st.xy,
+  vec2(12.9898,78.233)))*
+          43758.5453123);
+  }
+#endif
 
 // Based on Morgan McGuire @morgan3d
 // https://www.shadertoy.com/view/4dS3Wd
@@ -229,14 +197,13 @@ float fbm (in vec2 st) {
     }
     return value;
 }
-// ----------- STUDENT CODE END ------------
+
 
 // forward declaration
 float rayIntersectScene(Ray ray, out Material out_mat,
                         out Intersection out_intersect);
 
-// Plane
-// this function can be used for plane, triangle, and box
+//Plane
 float findIntersectionWithPlane(Ray ray, vec3 norm, float dist,
                                 out Intersection intersect) {
   float a = dot(ray.direction, norm);
@@ -257,8 +224,7 @@ float findIntersectionWithPlane(Ray ray, vec3 norm, float dist,
 // Triangle
 float findIntersectionWithTriangle(Ray ray, vec3 t1, vec3 t2, vec3 t3,
                                    out Intersection intersect) {
-  // ----------- STUDENT CODE BEGIN ------------
-  // ----------- Our reference solution uses 28 lines of code.
+
   vec3 faceNorm = findSurfaceNormal(t1, t2, t3);
   float d = dot(faceNorm, t1) / length(faceNorm); // proj
   float len = findIntersectionWithPlane(ray, faceNorm, d, intersect);
@@ -269,14 +235,13 @@ float findIntersectionWithTriangle(Ray ray, vec3 t1, vec3 t2, vec3 t3,
       return INFINITY;
   
   return len;
-  // ----------- STUDENT CODE END ------------
+
 }
 
 // Sphere
 float findIntersectionWithSphere(Ray ray, vec3 center, float radius,
                                  out Intersection intersect) {
-  // ----------- STUDENT CODE BEGIN ------------
-  // ----------- Our reference solution uses 25 lines of code.
+
   vec3 L = center - ray.origin;
   float t_ca = dot(L, ray.direction);
   if (t_ca < EPS) return INFINITY;
@@ -303,25 +268,19 @@ float findIntersectionWithSphere(Ray ray, vec3 center, float radius,
   }
 
   return INFINITY;
-  // ----------- STUDENT CODE END ------------
+
 }
 
 // Box
 float findIntersectionWithBox(Ray ray, vec3 pmin, vec3 pmax,
                               out Intersection out_intersect) {
-  // ----------- STUDENT CODE BEGIN ------------
-  // pmin and pmax represent two bounding points of the box
-  // pmin stores [xmin, ymin, zmin] and pmax stores [xmax, ymax, zmax]
-  // ----------- Our reference solution uses 44 lines of code.
-  
-  // size of the box
+
   vec3 size = pmax - pmin;
   vec3 norms[3];
   norms[0] = vec3(0.0, 0.0, 1.0); norms[1] = vec3(0.0, 1.0, 0.0); norms[2] = vec3(1.0, 0.0, 0.0);
   vec3 corners[2];
   corners[0] = pmin; corners[1] = pmax;
 
-  // loop through all sides of the box
   Intersection intersect;
   float best_len = INFINITY;
   for (int i = 0; i < 6; i++) {
@@ -334,16 +293,13 @@ float findIntersectionWithBox(Ray ray, vec3 pmin, vec3 pmax,
   }
 
   return best_len;
-  // ----------- STUDENT CODE END ------------
-}
 
+}
 
 // Cylinder
 float getIntersectOpenCylinder(Ray ray, vec3 center, vec3 axis, float len,
                                float rad, out Intersection intersect) {
-  // ----------- STUDENT CODE BEGIN ------------
-  // ----------- Our reference solution uses 33 lines of code.
-  // currently reports no intersection
+
   vec3 vd = ray.origin - center;
   float phi = dot(vd, axis);
   float theta = dot(ray.direction, axis);
@@ -379,14 +335,13 @@ float getIntersectOpenCylinder(Ray ray, vec3 center, vec3 axis, float len,
     return res;
   }
   return INFINITY;
-  // ----------- STUDENT CODE END ------------
+
 }
 
+//disc
 float getIntersectDisc(Ray ray, vec3 center, vec3 norm, float rad,
                        out Intersection intersect) {
-  // ----------- STUDENT CODE BEGIN ------------
-  // ----------- Our reference solution uses 18 lines of code.
-  // currently reports no intersection
+
   Intersection curr;
   float d = dot(norm, center) / length(norm);
   float len = findIntersectionWithPlane(ray, norm, d, curr);
@@ -396,7 +351,7 @@ float getIntersectDisc(Ray ray, vec3 center, vec3 norm, float rad,
     return len;
   }
   return INFINITY;
-  // ----------- STUDENT CODE END ------------
+
 }
 
 float findIntersectionWithCylinder(Ray ray, vec3 center, vec3 apex,
@@ -425,9 +380,7 @@ float findIntersectionWithCylinder(Ray ray, vec3 center, vec3 apex,
 // Cone
 float getIntersectOpenCone(Ray ray, vec3 apex, vec3 axis, float len,
                            float radius, out Intersection intersect) {
-  // ----------- STUDENT CODE BEGIN ------------
-  // ----------- Our reference solution uses 45 lines of code.
-  // currently reports no intersection
+
   vec3 vd = ray.origin - apex;
   float phi = dot(vd, axis);
   float theta = dot(ray.direction, axis);
@@ -465,7 +418,7 @@ float getIntersectOpenCone(Ray ray, vec3 apex, vec3 axis, float len,
   }
 
   return INFINITY;
-  // ----------- STUDENT CODE END ------------
+
 }
 
 float findIntersectionWithCone(Ray ray, vec3 center, vec3 apex, float radius,
@@ -474,30 +427,148 @@ float findIntersectionWithCone(Ray ray, vec3 center, vec3 apex, float radius,
   float len = length(axis);
   axis = normalize(axis);
 
-  // -- infinite cone
   Intersection intersect;
   float best_dist = INFINITY;
   float dist;
 
-  // -- infinite cone
+
   dist = getIntersectOpenCone(ray, apex, axis, len, radius, intersect);
   chooseCloserIntersection(dist, best_dist, intersect, out_intersect);
 
-  // -- caps
+
   dist = getIntersectDisc(ray, center, axis, radius, intersect);
   chooseCloserIntersection(dist, best_dist, intersect, out_intersect);
 
   return best_dist;
 }
 
-vec3 calculateSpecialDiffuseColor(Material mat, vec3 posIntersection,
-                                  vec3 normalVector) {
-  // ----------- STUDENT CODE BEGIN ------------
+
+
+
+bool pointInShadow(vec3 pos, vec3 lightVec) {
+
+  Ray ray;
+  ray.origin = pos;
+  ray.direction = normalize(lightVec);
+  
+
+  Material hitMaterial;
+  Intersection intersect;
+  float len = rayIntersectScene(ray, hitMaterial, intersect);
+
+  return (length(lightVec) - len > -EPS);
+
+}
+
+
+float softShadowRatio(vec3 pos, vec3 lightVec) {
+  float not_in_shadow = 0.0;
+  const int N = int(sqrt(float(SOFT_SAMPLING)));
+  for (int i = 0; i < N; i++) {
+    for (int j = 0; j < N; j++) {
+      // (i, j) represents tile locations
+      // rand values are offsets in that grid, which has the range [0, 1/N]
+      float x = float(i) / float(N) + random(vec2(0.0, 1.0/float(N)));
+      float y = float(j) / float(N) + random(vec2(0.0, 1.0/float(N)));
+      // convert to sphere coordinates
+      float theta = 2.0 * M_PI * x;
+      float phi = acos(2.0 * y - 1.0);
+      float u = cos(phi);
+
+      // find (x, y, z) offset
+      vec3 sample = vec3(sqrt(1.0 - u*u)*cos(theta), sqrt(1.0 - u*u)*sin(theta), u);
+
+      // apply sample offset to lightVec, check whether if the point is in shadow given the new light vec
+
+      bool in_shadow = pointInShadow(pos, lightVec + sample);
+      not_in_shadow += float(!in_shadow);
+    }
+  }
+  return not_in_shadow/float(SOFT_SAMPLING);
+
+}
+
+vec3 getLightContribution(Light light, Material mat, vec3 posIntersection,
+                          vec3 normalVector, vec3 eyeVector, bool phongOnly,
+                          vec3 diffuseColor) {
+  vec3 lightVector = light.position - posIntersection;
+
+  if ((SOFT_SHADOWS == 0) && pointInShadow(posIntersection, lightVector)) return vec3(0.0, 0.0, 0.0);
+  float ratio = SOFT_SHADOWS == 0 ? 1.0 : softShadowRatio(posIntersection, lightVector);
+
+
+  if (ratio < EPS) return vec3(0.0, 0.0, 0.0);
+
+  float distToLight = length(lightVector);
+  lightVector /= length(lightVector);
+
+  if (mat.materialType != PHONGMATERIAL && mat.materialType != LAMBERTMATERIAL)  return ratio * diffuseColor;
+
+  vec3 contribution = vec3(0.0, 0.0, 0.0);
+
+  // get light attenuation
+  float attenuation = light.attenuate * distToLight;
+  float diffuseIntensity =
+      max(0.0, dot(normalVector, lightVector)) * light.intensity;
+
+  // glass and mirror objects have specular highlights but no diffuse lighting
+  if (!phongOnly) 
+    contribution +=
+        diffuseColor * diffuseIntensity * light.color / attenuation;
+  
+  if (mat.materialType == PHONGMATERIAL ) {
+    vec3 n_eyeVector = normalize(eyeVector);
+    vec3 R = -reflect(lightVector, normalVector);
+    float intensity = pow(max(0.0, dot(n_eyeVector, R)), mat.shininess) * light.intensity;
+    contribution += mat.specular * intensity * light.color / attenuation;
+  }
+
+  return ratio * contribution;
+
+}
+
+
+
+// find reflection or refraction direction (depending on material type)
+vec3 calcReflectionVector(Material material, vec3 direction, vec3 normalVector,
+                          bool isInsideObj) {
+
+  if(material.materialReflectType == MIRRORREFLECT) 
+    return reflect(direction, normalVector);
+  
+  vec3 random_vec = normalize(vec3(random(direction.xy + v_position), random(direction.yz + v_position), random(direction.zx + v_position)));
+  random_vec = normalize(random_vec + normalVector);
+
+  //non reflect 
+  if (material.materialReflectType == NONEREFLECT ) 
+    return normalize(reflect(direction, normalVector)+random_vec*20.0);
+
+
+  float eta =
+      (isInsideObj) ? (1.0 / material.refractionRatio) : material.refractionRatio;
+  float cos_theta_i = dot(direction, normalVector)/(length(direction) * length(normalVector));
+  float theta_i = acos(cos_theta_i);
+  
+  // reflect
+  if ((eta * sin(theta_i)) > 1.0) 
+    return normalize(reflect(direction, normalVector) + random_vec*0.05);
+  
+  // refract
+  float theta_r = asin(eta * sin(theta_i));
+  vec3 T = eta * direction - (eta * cos_theta_i + cos(theta_r)) * normalVector;
+
+  return normalize(T+random_vec*0.05);
+}
+
+
+vec3 calculateDiffuseColor(Material mat, vec3 posIntersection,
+                           vec3 normalVector) {
+
   if (mat.special == CHECKERBOARD) {
-    // ----------- Our reference solution uses 7 lines of code.
-    float scale = 0.1; 
-    vec3 color1 = vec3(1.0, 0.5, 0.5);
-    vec3 color2 = vec3(0.6, 0.6, 1.0);
+
+    float scale = 0.05; 
+    vec3 color1 = vec3(0.3, 0.3, 0.3);
+    vec3 color2 = vec3(0.5451, 0.2705, 0.0745);
 
     float a = floor(posIntersection.x * scale + EPS);
     float b = floor(posIntersection.y * scale + EPS);
@@ -505,19 +576,10 @@ vec3 calculateSpecialDiffuseColor(Material mat, vec3 posIntersection,
 
     vec3 res = (mod(a+b+c, 2.0) > 0.5) ? color1 : color2;
     return res;
-  } else if (mat.special == MYSPECIAL) {
-    // ----------- Our reference solution uses 5 lines of code.
-    // -----1
-    // float scale = 7.0;
-    // vec3 p = floor(posIntersection * scale + EPS);
-    // float n = noise(p.xy);
-    // float rand1 = rand(vec2(0.0, 1.0));
-    // float rand2 = rand(vec2(0.0, 1.0));
-    // vec3 col = vec3(rand1 * n, rand2 * n, n);
-    // return col;
+  } 
+  
+  if (mat.special == MYSPECIAL) {
 
-    // -----2
-    // https://thebookofshaders.com/13/
     float u_time = float(frame) * 0.1;
     float scale = 2.0;
     vec2 st = posIntersection.xy / scale;
@@ -537,170 +599,15 @@ vec3 calculateSpecialDiffuseColor(Material mat, vec3 posIntersection,
                 vec3(0.666667,0.666667,0.498039),
                 clamp((f*f)*4.0,0.0,1.0));
 
-    color = mix(color,
-                vec3(0,0,0.164706),
-                clamp(length(q),0.0,1.0));
+    color = mix(color, vec3(0,0,0.164706), clamp(length(q),0.0,1.0));
 
-    color = mix(color,
-                vec3(0.666667,1,1),
-                clamp(length(r.x),0.0,1.0));
+    color = mix(color, vec3(0.666667,1,1), clamp(length(r.x),0.0,1.0));
 
     return vec3((f*f*f+.6*f*f+.5*f)*color);
   }
 
-  // If not a special material, just return material color.
   return mat.color;
-  // ----------- STUDENT CODE END ------------
-}
 
-
-// check if position pos in in shadow with respect to a particular light.
-// lightVec is the vector from that position to that light -- it is not
-// normalized, so its length is the distance from the position to the light
-bool pointInShadow(vec3 pos, vec3 lightVec) {
-  // ----------- STUDENT CODE BEGIN ------------
-  // ----------- Our reference solution uses 15 lines of code.
-  Ray ray;
-  ray.origin = pos;
-  ray.direction = normalize(lightVec);
-
-  Material hitMaterial;
-  Intersection intersect;
-  float len = rayIntersectScene(ray, hitMaterial, intersect);
-
-  if (length(lightVec) - len > -EPS) return true;
-  
-  return false;
-  // ----------- STUDENT CODE END ------------
-}
-
-// use random sampling to compute a ratio that represents the
-// fractional contribution of the light to the position pos.
-// lightVec is the vector from that position to that light -- it is not
-// normalized, so its length is the distance from the position to the light
-float softShadowRatio(vec3 pos, vec3 lightVec) {
-  // ----------- STUDENT CODE BEGIN ------------
-  // ----------- Our reference solution uses 19 lines of code.
-  float not_in_shadow = 0.0;
-  const int N = int(sqrt(float(SOFT_SAMPLING)));
-  for (int i = 0; i < N; i++) {
-    for (int j = 0; j < N; j++) {
-      // (i, j) represents tile locations
-      // rand values are offsets in that grid, which has the range [0, 1/N]
-      float x = float(i) / float(N) + rand(vec2(0.0, 1.0/float(N)));
-      float y = float(j) / float(N) + rand(vec2(0.0, 1.0/float(N)));
-      // convert to sphere coordinates
-      float theta = 2.0 * M_PI * x;
-      float phi = acos(2.0 * y - 1.0);
-      float u = cos(phi);
-
-      // find (x, y, z) offset
-      vec3 sample = vec3(sqrt(1.0 - u*u)*cos(theta), sqrt(1.0 - u*u)*sin(theta), u);
-
-      // apply sample offset to lightVec, check whether if the point is in shadow given the new light vec
-      bool in_shadow = pointInShadow(pos, lightVec + sample);
-      not_in_shadow += in_shadow ? 0.1 : 1.0;
-    }
-  }
-  return not_in_shadow/float(SOFT_SAMPLING);
-  // ----------- STUDENT CODE END ------------
-}
-
-vec3 getLightContribution(Light light, Material mat, vec3 posIntersection,
-                          vec3 normalVector, vec3 eyeVector, bool phongOnly,
-                          vec3 diffuseColor) {
-  vec3 lightVector = light.position - posIntersection;
-
-
-  float ratio = 1.0; // default to 1.0 for hard shadows
-  if (SOFT_SHADOWS == 1) {
-    ratio = softShadowRatio(posIntersection, lightVector);
-  }
-  else {
-    if (pointInShadow(posIntersection, lightVector)) {
-      return vec3(0.0, 0.0, 0.0);
-    }
-  }
-  if (ratio < EPS) {
-    return vec3(0.0, 0.0, 0.0);
-  }
-
-  float distToLight = length(lightVector);
-  lightVector /= distToLight;
-
-  if (mat.materialType == PHONGMATERIAL ||
-      mat.materialType == LAMBERTMATERIAL) {
-    vec3 contribution = vec3(0.0, 0.0, 0.0);
-
-    // get light attenuation
-    float attenuation = light.attenuate * distToLight;
-    float diffuseIntensity =
-        max(0.0, dot(normalVector, lightVector)) * light.intensity;
-
-    // glass and mirror objects have specular highlights but no diffuse lighting
-    if (!phongOnly) {
-      contribution +=
-          diffuseColor * diffuseIntensity * light.color / attenuation;
-    }
-
-    if (mat.materialType == PHONGMATERIAL ) {
-      vec3 phongTerm = vec3(0.0, 0.0, 0.0);
-      vec3 n_eyeVector = normalize(eyeVector);
-      vec3 R = -reflect(lightVector, normalVector);
-      float intensity = pow(max(0.0, dot(n_eyeVector, R)), mat.shininess) * light.intensity;
-      phongTerm = mat.specular * intensity * light.color / attenuation;
-      contribution += phongTerm;
-    }
-
-    return ratio * contribution;
-  } else {
-    return ratio * diffuseColor;
-  }
-}
-
-
-
-// find reflection or refraction direction (depending on material type)
-vec3 calcReflectionVector(Material material, vec3 direction, vec3 normalVector,
-                          bool isInsideObj) {
-  if(material.materialReflectType == GLASSREFLECT){
-    float eta =
-        (isInsideObj) ? (1.0 / material.refractionRatio) : material.refractionRatio;
-    float cos_theta_i = dot(direction, normalVector)/(length(direction) * length(normalVector));
-    float theta_i = acos(cos_theta_i);
-    if ((eta * sin(theta_i)) > 1.0) {
-        Vec3(random(direction.xy + v_position), random(direction.yz + v_position), random(direction.zx + v_position)));
-        // use normal vector as a radius, sum a random vector and the normal vector to compute the final random vector. 
-        random_vec = normalize(random_vec + normalVector);
-        return normalize(ref_light+random_vec*0.1);
-    }
-    float theta_r = asin(eta * sin(theta_i));
-    vec3 T = eta * direction - (eta * cos_theta_i + cos(theta_r)) * normalVector;
-    return T;
-  }else  if(material.materialReflectType == MIRRORREFLECT) {
-    vec3 ref_light = reflect(direction, normalVector);
-    return ref_light;
-  } else{
-    vec3 random_vec = normalize(vec3(random(direction.xy + v_position), random(direction.yz + v_position), random(direction.zx + v_position)));
-    // use normal vector as a radius, sum a random vector and the normal vector to compute the final random vector. 
-    random_vec = normalize(random_vec + normalVector);
-    vec3 ref_light = reflect(direction, normalVector);
-    return normalize(ref_light+random_vec*20.0);
-  }
-}
-
-
-
-
-
-
-vec3 calculateDiffuseColor(Material mat, vec3 posIntersection,
-                           vec3 normalVector) {
-  // Special colors
-  if (mat.special != NONE) {
-    return calculateSpecialDiffuseColor(mat, posIntersection, normalVector);
-  }
-  return vec3(mat.color);
 }
 
 
@@ -721,8 +628,6 @@ vec3 calculateColor(Material mat, vec3 posIntersection, vec3 normalVector,
     outputColor += contribution;
   }
 
- 
-
   vec3 R = normalize(-reflect(nectCoord - posIntersection, normalVector));
   
   float intensity = pow(max(0.0, dot(eyeVector, R)), mat.shininess);
@@ -730,13 +635,12 @@ vec3 calculateColor(Material mat, vec3 posIntersection, vec3 normalVector,
   float diffuseIntensity =
         max(0.0, dot(normalVector, nectCoord - posIntersection)) * intensity;
 
-  outputColor += diffuseColor * diffuseIntensity * nextColor;
+  outputColor += diffuseColor * diffuseIntensity * nextColor * 0.3;
 
-  outputColor += mat.specular * nextColor * intensity * 2.0 ;
+  outputColor += mat.specular * nextColor * intensity  ;
 
   return outputColor;
 }
-
 
 
 vec3 traceRay(Ray ray) {
@@ -746,55 +650,11 @@ vec3 traceRay(Ray ray) {
 
   bool isInsideObj = false;
 
-#if 0
-  for (int depth = 0; depth < MAX_RECURSION; depth++) {
-    Material hitMaterial;
-    Intersection intersect;
-    float len = rayIntersectScene(ray, hitMaterial, intersect);
-    if (abs(len) <= EPS || len >= INFINITY) break; 
-   
-    vec3 posIntersection = intersect.position;
-    vec3 normalVector    = intersect.normal;
-    vec3 eyeVector = normalize(ray.origin - posIntersection);
 
-    if (dot(eyeVector, normalVector) < 0.0) {
-        normalVector = -normalVector;
-        isInsideObj = true;
-    } else {
-        isInsideObj = false;
-    }
-
-    bool reflective = (hitMaterial.materialReflectType == MIRRORREFLECT ||
-                      hitMaterial.materialReflectType == GLASSREFLECT ||
-                      hitMaterial.materialReflectType == ICE);
-
- 
-      ray.origin = rayGetOffset(ray, len);
-      vec3 nextDir = calcReflectionVector(hitMaterial, ray.direction, normalVector, isInsideObj);
-      ray.direction = normalize(nextDir);
-      
-
-      vec3 outputColor = calculateColor(hitMaterial, posIntersection,normalVector, eyeVector, reflective,
-      vec3(0.0, 0.0, 0.0),vec3(0.0, 0.0, 0.0));
-      outputColor = outputColor * resWeight;
-      resWeight *= hitMaterial.reflectivity;
-      resColor += outputColor;
-      if (!reflective) break;
-
-     
- 
-    
-  }
-
-#else
   Material mats[MAX_RECURSION];
-  vec3 intersections[MAX_RECURSION];
   vec3 normals[MAX_RECURSION];
-  vec3 eyeVectors[MAX_RECURSION];
   bool isReflective[MAX_RECURSION];
-
   vec3 origin[MAX_RECURSION+1];
-
   vec3 resWeights[MAX_RECURSION];
 
 
@@ -819,9 +679,8 @@ vec3 traceRay(Ray ray) {
     if (dot(eyeVector, normalVector) < 0.0) {
         normalVector = -normalVector;
         isInsideObj = true;
-    } else {
-        isInsideObj = false;
-    }
+    } else isInsideObj = false;
+    
     normals[depth] = normalVector;
 
     //store reflective flags
@@ -855,23 +714,8 @@ vec3 traceRay(Ray ray) {
     }  
   }
 
-#endif
-
-
   return resColor ;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -879,14 +723,11 @@ void main() {
   float cameraFOV = 0.8;
   vec3 direction = vec3(v_position.x * cameraFOV * width / height,
                         v_position.y * cameraFOV, 1.0);
-
   Ray ray;
   ray.origin = vec3(uMVMatrix * vec4(camera, 1.0));
   ray.direction = normalize(vec3(uMVMatrix * vec4(direction, 0.0)));
 
-  // trace the ray for this pixel
   vec3 res = traceRay(ray);
 
-  // paint the resulting color into this pixel
   gl_FragColor = vec4(res.x, res.y, res.z, 1.0);
 }
